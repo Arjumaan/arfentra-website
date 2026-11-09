@@ -4,7 +4,6 @@ import { Hero } from './components/Hero';
 import { IndustrySectors } from './components/IndustrySectors';
 import { BentoFeatures } from './components/BentoFeatures';
 import { CapabilitiesShowcase } from './components/CapabilitiesShowcase';
-import { RoiSimulator, RoiTelemetryData } from './components/RoiSimulator';
 import { ProductShowcase } from './components/ProductShowcase';
 import { Pricing } from './components/Pricing';
 import { Testimonials } from './components/Testimonials';
@@ -12,36 +11,15 @@ import { CorporateVerification } from './components/CorporateVerification';
 import { StrategySection } from './components/StrategySection';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
-import { Briefcase, Layers, Calculator, Sparkles, Cpu } from 'lucide-react';
+import { Briefcase, Layers, Calendar, Sparkles, Cpu } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTier, setSelectedTier] = useState<string | undefined>(undefined);
 
-  const [telemetry, setTelemetry] = useState<RoiTelemetryData>({
-    verticalName: 'Freight & Heavy Logistics',
-    efficiency: 0.42,
-    monthlyHours: 1200,
-    hourlyRate: 850,
-    annualSavings: 5140800,
-    hoursReclaimed: 6048,
-    compressionPct: 42,
-    formattedSavings: '₹51.4 L',
-  });
-
   const handleOpenConsultation = (tier?: string) => {
     setSelectedTier(tier);
     setModalOpen(true);
-  };
-
-  const handleLockStrategy = (data: RoiTelemetryData) => {
-    setTelemetry(data);
-    const target = document.getElementById('schedule-strategy-session');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      handleOpenConsultation(`Strategy Reclaim: ${data.verticalName} (${data.formattedSavings}/yr)`);
-    }
   };
 
   return (
@@ -61,9 +39,6 @@ export const App: React.FC = () => {
       {/* Enterprise Capabilities: Autonomous Orchestrator & Heavy Digital Twin */}
       <CapabilitiesShowcase onOpenConsultation={handleOpenConsultation} />
 
-      {/* Quantifiable Value: Interactive ROI & Capital Reclaim Simulator */}
-      <RoiSimulator onLockStrategy={handleLockStrategy} />
-
       {/* Flagship Proprietary Consumer & EdTech Platforms */}
       <ProductShowcase onOpenConsultation={handleOpenConsultation} />
 
@@ -76,8 +51,8 @@ export const App: React.FC = () => {
       {/* Statutory Corporate Verification & MCA Credentials */}
       <CorporateVerification />
 
-      {/* Synchronized Board-Level Strategy Call Booking Section */}
-      <StrategySection telemetry={telemetry} />
+      {/* Synchronized Board-Level Strategy Call Booking Section with Calendar/Time Picker */}
+      <StrategySection />
 
       {/* Corporate Coordinates & Legal Footer */}
       <Footer />
@@ -100,11 +75,11 @@ export const App: React.FC = () => {
             <span className="text-[10px] font-mono tracking-tight">Mesh</span>
           </a>
           <a
-            href="#roi-calculator"
+            href="#schedule-strategy-session"
             className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-[#B8A77E] hover:text-[#FAF7EF] transition-colors"
           >
-            <Calculator className="w-5 h-5 text-[#f1e1ba]" />
-            <span className="text-[10px] font-mono tracking-tight">ROI Calc</span>
+            <Calendar className="w-5 h-5 text-[#fabc41]" />
+            <span className="text-[10px] font-mono tracking-tight">Book Slot</span>
           </a>
           <a
             href="#products"
@@ -123,12 +98,11 @@ export const App: React.FC = () => {
         </div>
       </nav>
 
-      {/* Global Interactive Consultation Modal with Telemetry Sync */}
+      {/* Global Interactive Consultation Modal with Date/Time Slot Picker */}
       <ConsultationModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         preselectedTier={selectedTier}
-        telemetry={telemetry}
       />
     </div>
   );

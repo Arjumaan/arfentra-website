@@ -22,7 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
     { label: 'Solutions', href: '#solutions' },
     { label: 'Capabilities', href: '#capabilities' },
     { label: 'Industries', href: '#industries' },
-    { label: 'ROI Simulator', href: '#roi-calculator' },
     { label: 'Products', href: '#products' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'Corporate', href: '#corporate' },

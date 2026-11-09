@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { RoiTelemetryData } from './RoiSimulator';
 import {
+  Calendar as CalendarIcon,
+  Clock,
   Phone,
   Send,
   CheckCircle,
@@ -14,29 +15,32 @@ import {
   Sparkles,
 } from 'lucide-react';
 
-interface StrategySectionProps {
-  telemetry: RoiTelemetryData;
-}
+export const StrategySection: React.FC = () => {
+  const upcomingDays = [
+    { label: 'Tomorrow (Tue)', date: 'Tue, Nov 10', iso: '2026-11-10', isEarliest: true },
+    { label: 'Wednesday', date: 'Wed, Nov 11', iso: '2026-11-11' },
+    { label: 'Thursday', date: 'Thu, Nov 12', iso: '2026-11-12' },
+    { label: 'Friday', date: 'Fri, Nov 13', iso: '2026-11-13' },
+    { label: 'Next Monday', date: 'Mon, Nov 16', iso: '2026-11-16' },
+  ];
 
-export const StrategySection: React.FC<StrategySectionProps> = ({ telemetry }) => {
+  const timeSlots = [
+    '10:00 AM IST',
+    '11:30 AM IST',
+    '02:00 PM IST',
+    '03:30 PM IST',
+    '05:00 PM IST',
+  ];
+
+  const [selectedDay, setSelectedDay] = useState(upcomingDays[0]);
+  const [selectedTime, setSelectedTime] = useState(timeSlots[1]); // 11:30 AM default
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [vertical, setVertical] = useState(telemetry.verticalName);
+  const [vertical, setVertical] = useState('Freight & Heavy Logistics');
   const [notes, setNotes] = useState('');
-  const [userEditedNotes, setUserEditedNotes] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  // Sync with simulator when telemetry changes unless user manually typed custom notes
-  useEffect(() => {
-    setVertical(telemetry.verticalName);
-    if (!userEditedNotes) {
-      setNotes(
-        `Inquiring about Arfentra deterministic multi-agent deployment. Target reclaim: ${telemetry.formattedSavings}/year across ${telemetry.verticalName} with ~${telemetry.monthlyHours.toLocaleString('en-IN')} monthly operational hours (est. rate: ₹${telemetry.hourlyRate}/hr).`
-      );
-    }
-  }, [telemetry, userEditedNotes]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,51 +73,109 @@ export const StrategySection: React.FC<StrategySectionProps> = ({ telemetry }) =
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[#FAF7EF] tracking-tight leading-tight">
-            Ready to Reclaim 40% of Your Enterprise Workload?
+            Reserve Your Systems Architecture Session
           </h2>
 
           <p className="text-[#B8A77E] text-base sm:text-lg leading-relaxed font-normal">
-            Speak directly with an Arfentra Systems Architect. We assess your physical or software bottleneck and establish a deterministic 7–14 day deployment roadmap.
+            Select a priority date and time slot. An Arfentra Systems Architect will review your physical or software bottleneck and establish a deterministic 7–14 day deployment roadmap.
           </p>
         </div>
 
         {/* Synchronized Booking Form Container */}
         <div className="p-6 sm:p-10 rounded-3xl bg-[#241218]/90 border border-[#3D1F2A] shadow-2xl relative backdrop-blur-md">
           
-          {/* Synchronized Telemetry Payload Ribbon */}
-          <div className="mb-8 p-5 rounded-2xl bg-[#170b0f] border border-[#8c1d40]/60 shadow-inner flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#A8244D] animate-ping" />
-                <span className="font-mono text-xs text-[#ffb2bf] uppercase font-bold tracking-wider">
-                  SYNCHRONIZED TELEMETRY PAYLOAD
+          {/* Calendar Date & Time Slot Picker */}
+          <div className="mb-8 p-6 rounded-2xl bg-[#170b0f] border border-[#3D1F2A] space-y-6">
+            
+            {/* 1. Date Picker Row */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-[#B8A77E] uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                  <CalendarIcon className="w-4 h-4 text-[#fabc41]" />
+                  <span>1. Select Priority Consultation Date</span>
+                </span>
+                <span className="text-[#ffb2bf] font-bold">
+                  Selected: {selectedDay.date}
                 </span>
               </div>
-              <div className="font-bold text-[#FAF7EF] text-base">
-                Selected Target Sector: <span className="text-[#fabc41]">{vertical}</span>
+
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                {upcomingDays.map((day) => {
+                  const isSelected = selectedDay.iso === day.iso;
+                  return (
+                    <button
+                      key={day.iso}
+                      type="button"
+                      onClick={() => setSelectedDay(day)}
+                      className={`p-3 rounded-xl text-left transition-all cursor-pointer font-mono border ${
+                        isSelected
+                          ? 'bg-[#8c1d40] text-[#FAF7EF] border-[#ffb2bf] shadow-[0_0_12px_rgba(140,29,64,0.45)] ring-1 ring-[#ffb2bf]/40'
+                          : 'bg-[#241218] text-[#ddbfc3] border-[#3D1F2A] hover:border-[#8c1d40] hover:text-[#FAF7EF]'
+                      }`}
+                    >
+                      <div className="text-[10px] text-[#B8A77E] uppercase block">
+                        {day.label}
+                      </div>
+                      <div className="font-bold text-xs sm:text-sm text-[#FAF7EF] mt-0.5">
+                        {day.date}
+                      </div>
+                      {day.isEarliest && (
+                        <span className="inline-block mt-1 px-1.5 py-0.5 rounded text-[9px] bg-[#fabc41]/20 text-[#fabc41] font-semibold">
+                          Earliest Slot
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 md:gap-5 text-left md:text-right font-mono">
-              <div className="border-r md:border-r-0 md:border-l border-[#3D1F2A] pr-3 md:pr-0 md:pl-5">
-                <span className="text-[10px] text-[#B8A77E] uppercase block">Target Reclaim</span>
-                <span className="text-[#FAF7EF] font-bold text-sm lg:text-base">
-                  {telemetry.formattedSavings}/yr
+            {/* 2. Time Slot Row */}
+            <div className="space-y-3 pt-2 border-t border-[#3D1F2A]">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-[#B8A77E] uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-[#fabc41]" />
+                  <span>2. Select Time Window (IST)</span>
+                </span>
+                <span className="text-[#fabc41] font-bold">
+                  {selectedTime}
                 </span>
               </div>
-              <div className="border-r md:border-r-0 md:border-l border-[#3D1F2A] pr-3 md:pr-0 md:pl-5">
-                <span className="text-[10px] text-[#B8A77E] uppercase block">Compression</span>
-                <span className="text-[#ffb2bf] font-bold text-sm lg:text-base">
-                  {telemetry.compressionPct}% Cut
-                </span>
-              </div>
-              <div className="md:border-l border-[#3D1F2A] md:pl-5">
-                <span className="text-[10px] text-[#B8A77E] uppercase block">Hours Reclaimed</span>
-                <span className="text-[#fabc41] font-bold text-sm lg:text-base">
-                  {Math.round(telemetry.hoursReclaimed).toLocaleString('en-IN')} hrs/yr
-                </span>
+
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                {timeSlots.map((slot) => {
+                  const isSelected = selectedTime === slot;
+                  return (
+                    <button
+                      key={slot}
+                      type="button"
+                      onClick={() => setSelectedTime(slot)}
+                      className={`py-2.5 px-3 rounded-xl text-center transition-all cursor-pointer font-mono text-xs border ${
+                        isSelected
+                          ? 'bg-[#8c1d40] text-[#FAF7EF] border-[#ffb2bf] shadow-[0_0_12px_rgba(140,29,64,0.45)]'
+                          : 'bg-[#241218] text-[#ddbfc3] border-[#3D1F2A] hover:border-[#8c1d40] hover:text-[#FAF7EF]'
+                      }`}
+                    >
+                      <span className="font-bold">{slot}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
+
+            {/* Confirmed Slot Summary Pill */}
+            <div className="p-3.5 rounded-xl bg-[#241218] border border-[#8c1d40]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs">
+              <div className="flex items-center gap-2 text-[#FAF7EF]">
+                <span className="w-2 h-2 rounded-full bg-[#fabc41] animate-ping" />
+                <span>
+                  Confirmed Window: <strong className="text-[#fabc41]">{selectedDay.date}</strong> at <strong className="text-[#fabc41]">{selectedTime}</strong>
+                </span>
+              </div>
+              <span className="text-[#B8A77E] text-[11px]">
+                45-Min Dedicated Architecture Scoping
+              </span>
+            </div>
+
           </div>
 
           {/* Form */}
@@ -126,14 +188,14 @@ export const StrategySection: React.FC<StrategySectionProps> = ({ telemetry }) =
               <div className="w-14 h-14 rounded-full bg-[#8c1d40]/30 text-[#fabc41] flex items-center justify-center mx-auto border border-[#fabc41]">
                 <CheckCircle className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-[#FAF7EF]">Session Scope Transmitted</h3>
+              <h3 className="text-2xl font-bold text-[#FAF7EF]">Session Confirmed &amp; Dispatched</h3>
               <p className="text-[#ddbfc3] text-sm max-w-lg mx-auto leading-relaxed font-sans">
-                Thank you, <strong>{name}</strong>. An Arfentra Lead Systems Architect is reviewing your operational parameters and will dispatch coordination credentials within <strong>4 business hours</strong>.
+                Thank you, <strong>{name}</strong>. Your session for <strong>{selectedDay.date}</strong> at <strong>{selectedTime}</strong> has been logged. An Arfentra Lead Systems Architect is preparing your technical docket and will coordinate video credentials within <strong>4 business hours</strong>.
               </p>
 
               <div className="pt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
                 <a
-                  href={`mailto:arfentra@gmail.com?subject=Confirmed Strategy Scoping for ${encodeURIComponent(vertical)}&body=${encodeURIComponent(notes)}`}
+                  href={`mailto:arfentra@gmail.com?subject=Confirmed Architecture Session: ${encodeURIComponent(name)} [${encodeURIComponent(selectedDay.date)} ${encodeURIComponent(selectedTime)}]&body=Name: ${encodeURIComponent(name)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0APhone: ${encodeURIComponent(phone)}%0D%0AVertical: ${encodeURIComponent(vertical)}%0D%0ASession Time: ${encodeURIComponent(selectedDay.date)} at ${encodeURIComponent(selectedTime)}%0D%0AScope: ${encodeURIComponent(notes)}`}
                   className="px-4 py-2 rounded-xl bg-[#241218] border border-[#3D1F2A] text-[#ffb2bf] hover:text-[#FAF7EF]"
                 >
                   Send Direct Email Backup
@@ -216,6 +278,7 @@ export const StrategySection: React.FC<StrategySectionProps> = ({ telemetry }) =
                     <option value="Institutional Hospitality">Institutional Hospitality</option>
                     <option value="Industrial Manufacturing">Industrial Manufacturing</option>
                     <option value="Sovereign Infra & Defense">Sovereign Infra &amp; Defense</option>
+                    <option value="Custom Enterprise Architecture">Custom Enterprise Architecture</option>
                   </select>
                 </div>
 
@@ -229,17 +292,15 @@ export const StrategySection: React.FC<StrategySectionProps> = ({ telemetry }) =
                     <span>Project Scope &amp; Specific Process Friction</span>
                   </span>
                   <span className="text-[10px] text-[#fabc41] font-normal">
-                    Auto-synced with Simulator Telemetry
+                    Optional Brief
                   </span>
                 </label>
                 <textarea
                   rows={3}
                   value={notes}
-                  onChange={(e) => {
-                    setNotes(e.target.value);
-                    setUserEditedNotes(true);
-                  }}
-                  className="w-full px-4 py-3 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] font-sans text-sm focus:outline-none focus:border-[#ffb2bf] focus:ring-1 focus:ring-[#8c1d40] transition-all leading-relaxed"
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Describe your current manual bottlenecks, weighbridge friction, or target systems to automate..."
+                  className="w-full px-4 py-3 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/40 font-sans text-sm focus:outline-none focus:border-[#ffb2bf] focus:ring-1 focus:ring-[#8c1d40] transition-all leading-relaxed"
                 />
               </div>
 
@@ -258,12 +319,12 @@ export const StrategySection: React.FC<StrategySectionProps> = ({ telemetry }) =
                   {submitting ? (
                     <>
                       <Sparkles className="w-4 h-4 animate-spin text-[#FAF7EF]" />
-                      <span>Transmitting Scoping Payload...</span>
+                      <span>Locking In Session...</span>
                     </>
                   ) : (
                     <>
                       <Send className="w-4 h-4 text-[#FAF7EF]" />
-                      <span>Confirm Architecture Strategy Call</span>
+                      <span>Confirm Session ({selectedDay.date} · {selectedTime})</span>
                     </>
                   )}
                 </button>

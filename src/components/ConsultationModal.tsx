@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { X, Check, Phone, Sparkles, Building2, TrendingUp, Clock } from 'lucide-react';
-import { RoiTelemetryData } from './RoiSimulator';
+import { X, Check, Phone, Sparkles, Calendar as CalendarIcon, Clock } from 'lucide-react';
 
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedTier?: string;
-  telemetry?: RoiTelemetryData;
 }
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   isOpen,
   onClose,
   preselectedTier,
-  telemetry,
 }) => {
+  const upcomingDays = [
+    { label: 'Tomorrow (Tue)', date: 'Tue, Nov 10', isEarliest: true },
+    { label: 'Wednesday', date: 'Wed, Nov 11' },
+    { label: 'Thursday', date: 'Thu, Nov 12' },
+    { label: 'Friday', date: 'Fri, Nov 13' },
+    { label: 'Next Monday', date: 'Mon, Nov 16' },
+  ];
+
+  const timeSlots = [
+    '10:00 AM IST',
+    '11:30 AM IST',
+    '02:00 PM IST',
+    '03:30 PM IST',
+    '05:00 PM IST',
+  ];
+
+  const [selectedDay, setSelectedDay] = useState(upcomingDays[0]);
+  const [selectedTime, setSelectedTime] = useState(timeSlots[1]);
   const [tier, setTier] = useState('Starter Prototype (₹15,000)');
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -32,15 +47,6 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       setTier(preselectedTier);
     }
   }, [preselectedTier]);
-
-  useEffect(() => {
-    if (isOpen && telemetry && !formData.message) {
-      setFormData((prev) => ({
-        ...prev,
-        message: `Inquiring about Arfentra deterministic multi-agent deployment. Target reclaim: ${telemetry.formattedSavings}/year across ${telemetry.verticalName} (~${telemetry.monthlyHours.toLocaleString('en-IN')} hrs/mo at ₹${telemetry.hourlyRate}/hr).`,
-      }));
-    }
-  }, [isOpen, telemetry, formData.message]);
 
   useEffect(() => {
     if (isOpen) {
@@ -61,9 +67,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       origin: { y: 0.6 },
     });
 
-    const subject = encodeURIComponent(`Strategy Call Request: ${formData.company || formData.name} [${tier}]`);
+    const subject = encodeURIComponent(
+      `Strategy Session Request: ${formData.company || formData.name} [${selectedDay.date} ${selectedTime}]`
+    );
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nPackage/Scope: ${tier}\n\nProject Scope & Friction Details:\n${formData.message}`
+      `Name: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nPackage/Scope: ${tier}\nRequested Slot: ${selectedDay.date} at ${selectedTime}\n\nProject Scope & Friction Details:\n${formData.message}`
     );
 
     setTimeout(() => {
@@ -90,7 +98,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-            className="relative w-full max-w-xl rounded-3xl bg-[#241218] border border-[#3D1F2A] p-6 sm:p-8 shadow-2xl shadow-black z-10 my-auto text-left"
+            className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#241218] border border-[#3D1F2A] p-6 sm:p-8 shadow-2xl shadow-black z-10 my-auto text-left"
           >
             {/* Close Button */}
             <button
@@ -102,43 +110,106 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
             {!submitted ? (
               <>
-                <div className="mb-6 space-y-1.5">
+                <div className="mb-5 space-y-1.5">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#25181c] border border-[#3D1F2A] text-[#ffb2bf] font-mono text-xs">
                     <Sparkles className="w-3.5 h-3.5 text-[#fabc41]" />
-                    <span>Zero-Obligation Strategy Session</span>
+                    <span>Executive Strategy Protocol</span>
                   </div>
                   <h3 className="text-2xl font-extrabold text-[#FAF7EF] tracking-tight">
                     Schedule Architecture Review
                   </h3>
                   <p className="text-xs text-[#ddbfc3] font-sans">
-                    Connect directly with Arfentra’s engineering leads. We analyze your workflows and outline deterministic automation milestones.
+                    Reserve a direct consultation window with Arfentra’s engineering leads. We analyze your workflows and outline deterministic automation milestones.
                   </p>
                 </div>
 
-                {/* Telemetry Preview if available */}
-                {telemetry && (
-                  <div className="mb-5 p-3.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                    <div className="flex items-center gap-1.5 text-[#FAF7EF]">
-                      <Building2 className="w-3.5 h-3.5 text-[#fabc41]" />
-                      <span className="text-[11px] font-bold truncate max-w-[140px] sm:max-w-none">
-                        {telemetry.verticalName}
+                {/* Calendar Date & Time Slot Picker */}
+                <div className="mb-5 p-4 rounded-2xl bg-[#170b0f] border border-[#3D1F2A] space-y-4">
+                  {/* Date Selector */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#B8A77E] uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                        <CalendarIcon className="w-3.5 h-3.5 text-[#fabc41]" />
+                        <span>Select Priority Date</span>
+                      </span>
+                      <span className="text-[#ffb2bf] font-bold text-[11px]">
+                        {selectedDay.date}
                       </span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[#FAF7EF] font-bold">
-                      <TrendingUp className="w-3.5 h-3.5 text-[#fabc41]" />
-                      <span>{telemetry.formattedSavings}/yr</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[#ffb2bf]">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{telemetry.compressionPct}% Reclaim</span>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+                      {upcomingDays.map((day) => {
+                        const isSelected = selectedDay.date === day.date;
+                        return (
+                          <button
+                            key={day.date}
+                            type="button"
+                            onClick={() => setSelectedDay(day)}
+                            className={`p-2 rounded-lg text-left transition-all cursor-pointer font-mono border text-xs ${
+                              isSelected
+                                ? 'bg-[#8c1d40] text-[#FAF7EF] border-[#ffb2bf] shadow-[0_0_10px_rgba(140,29,64,0.4)]'
+                                : 'bg-[#241218] text-[#ddbfc3] border-[#3D1F2A] hover:border-[#8c1d40] hover:text-[#FAF7EF]'
+                            }`}
+                          >
+                            <div className="text-[9px] text-[#B8A77E] uppercase truncate">
+                              {day.label}
+                            </div>
+                            <div className="font-bold text-[11px] text-[#FAF7EF] mt-0.5">
+                              {day.date.split(', ')[1]}
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
-                )}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Time Selector */}
+                  <div className="space-y-2 pt-2 border-t border-[#3D1F2A]">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#B8A77E] uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-[#fabc41]" />
+                        <span>Select IST Window</span>
+                      </span>
+                      <span className="text-[#fabc41] font-bold text-[11px]">
+                        {selectedTime}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
+                      {timeSlots.map((slot) => {
+                        const isSelected = selectedTime === slot;
+                        return (
+                          <button
+                            key={slot}
+                            type="button"
+                            onClick={() => setSelectedTime(slot)}
+                            className={`py-1.5 px-2 rounded-lg text-center transition-all cursor-pointer font-mono text-[11px] border ${
+                              isSelected
+                                ? 'bg-[#8c1d40] text-[#FAF7EF] border-[#ffb2bf]'
+                                : 'bg-[#241218] text-[#ddbfc3] border-[#3D1F2A] hover:border-[#8c1d40] hover:text-[#FAF7EF]'
+                            }`}
+                          >
+                            <span className="font-bold">{slot.replace(' IST', '')}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Summary pill */}
+                  <div className="p-2.5 rounded-xl bg-[#241218] border border-[#8c1d40]/40 flex items-center justify-between text-[11px] font-mono text-[#FAF7EF]">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#fabc41] animate-ping" />
+                      Slot: <strong className="text-[#fabc41]">{selectedDay.date}</strong> at <strong className="text-[#fabc41]">{selectedTime}</strong>
+                    </span>
+                    <span className="text-[#B8A77E] text-[10px]">45-min Zoom</span>
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-3.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block font-mono text-[11px] text-[#B8A77E] uppercase tracking-wider mb-1">
+                      <label className="block font-mono text-[10px] text-[#B8A77E] uppercase tracking-wider mb-1">
                         Full Name *
                       </label>
                       <input
@@ -147,12 +218,12 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                         placeholder="e.g. Anand Kumar"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[11px] text-[#B8A77E] uppercase tracking-wider mb-1">
+                      <label className="block font-mono text-[10px] text-[#B8A77E] uppercase tracking-wider mb-1">
                         Enterprise / Organization *
                       </label>
                       <input
@@ -161,14 +232,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                         placeholder="e.g. Coastal Logistics Ltd"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block font-mono text-[11px] text-[#B8A77E] uppercase tracking-wider mb-1">
+                      <label className="block font-mono text-[10px] text-[#B8A77E] uppercase tracking-wider mb-1">
                         Corporate Email *
                       </label>
                       <input
@@ -177,12 +248,12 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                         placeholder="anand@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="block font-mono text-[11px] text-[#B8A77E] uppercase tracking-wider mb-1">
+                      <label className="block font-mono text-[10px] text-[#B8A77E] uppercase tracking-wider mb-1">
                         Direct Phone / WhatsApp *
                       </label>
                       <input
@@ -191,19 +262,19 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
+                        className="w-full px-3.5 py-2 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block font-mono text-[11px] text-[#B8A77E] uppercase tracking-wider mb-1">
+                    <label className="block font-mono text-[10px] text-[#B8A77E] uppercase tracking-wider mb-1">
                       Engagement Scope / Tier
                     </label>
                     <select
                       value={tier}
                       onChange={(e) => setTier(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors cursor-pointer"
+                      className="w-full px-3.5 py-2 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors cursor-pointer"
                     >
                       <option value="Starter Prototype (₹15,000)">Starter Prototype (₹15,000)</option>
                       <option value="Agentic Orchestration (₹75k – ₹2.5L)">Agentic Orchestration Platform (₹75k – ₹2.5L)</option>
@@ -215,15 +286,15 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   </div>
 
                   <div>
-                    <label className="block font-mono text-[11px] text-[#B8A77E] uppercase tracking-wider mb-1">
+                    <label className="block font-mono text-[10px] text-[#B8A77E] uppercase tracking-wider mb-1">
                       Process Friction / Automation Goals
                     </label>
                     <textarea
-                      rows={3}
+                      rows={2}
                       placeholder="Briefly describe the operational bottleneck or custom software you wish to automate..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors font-sans"
+                      className="w-full px-3.5 py-2 rounded-xl bg-[#170b0f] border border-[#3D1F2A] text-[#FAF7EF] placeholder-[#B8A77E]/50 text-sm focus:border-[#ffb2bf] focus:outline-none transition-colors font-sans"
                     />
                   </div>
 
@@ -232,7 +303,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                       type="submit"
                       className="w-full sm:flex-1 py-3.5 rounded-xl bg-[#8c1d40] text-[#FAF7EF] font-bold text-xs uppercase tracking-wider hover:bg-[#A8244D] active:scale-[0.98] transition-all cursor-pointer shadow-[0_4px_16px_rgba(140,29,64,0.4)]"
                     >
-                      Transmit Strategy Request
+                      Transmit Session Reservation
                     </button>
 
                     <a
@@ -250,9 +321,9 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                 <div className="w-14 h-14 rounded-full bg-[#8c1d40]/30 border border-[#fabc41] flex items-center justify-center mx-auto text-[#fabc41]">
                   <Check className="w-7 h-7" />
                 </div>
-                <h4 className="text-xl font-bold text-[#FAF7EF]">Strategy Request Transmitted</h4>
+                <h4 className="text-xl font-bold text-[#FAF7EF]">Strategy Session Reserved</h4>
                 <p className="text-xs text-[#ddbfc3] max-w-sm mx-auto leading-relaxed font-sans">
-                  Thank you for reaching out to Arfentra Private Limited. Our senior engineering leads will review your operational requirements and initiate contact within 4 business hours.
+                  Thank you, <strong>{formData.name}</strong>. Your session on <strong>{selectedDay.date}</strong> at <strong>{selectedTime}</strong> has been logged. Our senior engineering leads will review your operational requirements and initiate contact within 4 business hours.
                 </p>
                 <button
                   onClick={onClose}
