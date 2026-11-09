@@ -1,116 +1,132 @@
 import React from 'react';
-import { Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck, Terminal, Landmark, Globe } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-zinc-950 border-t border-zinc-800/80 text-zinc-400 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+    <footer className="w-full bg-[#170b0f] border-t border-[#3D1F2A] text-[#ddbfc3] font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-[#3D1F2A]">
           
           {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 p-1 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-[#241218] border border-[#3D1F2A] p-1 flex items-center justify-center">
                 <img src="./assets/logo.png" alt="Arfentra" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-white text-lg tracking-tight uppercase">
-                Arfentra Private Limited
+              <span className="font-extrabold text-[#FAF7EF] text-lg tracking-tight uppercase">
+                ARFENTRA
               </span>
             </div>
 
-            <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
-              Enterprise artificial intelligence, autonomous agentic workflows, custom web and mobile platforms, and sovereign cloud infrastructure engineering.
+            <p className="text-xs text-[#ddbfc3] max-w-sm leading-relaxed font-sans">
+              Institutional Grade Autonomous Workflow Architectures &amp; Executive Enterprise Technology Infrastructure.
             </p>
 
-            <div className="flex flex-wrap items-center gap-2.5 pt-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 font-mono text-[11px] text-zinc-300">
-                CIN: U62013TZ2026PTC041310
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 font-mono text-[11px] text-emerald-400">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                Verified Entity
-              </span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0E0608] text-[#B8A77E] font-mono text-[11px] border border-[#3D1F2A]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#fabc41] animate-pulse" />
+              <span>MCA REGISTRY VERIFIED</span>
             </div>
           </div>
 
-          {/* Col 2: Solutions */}
-          <div className="space-y-3 text-xs">
-            <span className="font-mono text-zinc-200 uppercase font-bold tracking-wider block">
-              Core Solutions
-            </span>
-            <div className="flex flex-col space-y-2.5">
-              <a href="#solutions" className="hover:text-white transition-colors">Autonomous Agent Loops</a>
-              <a href="#capabilities" className="hover:text-white transition-colors">Command Dome &amp; Digital Twin</a>
-              <a href="#roi-calculator" className="hover:text-white transition-colors">ROI &amp; Reclaim Simulator</a>
-              <a href="#industries" className="hover:text-white transition-colors">4 Sector Alliances</a>
-              <a href="#pricing" className="hover:text-white transition-colors">Transparent Investment Tiers</a>
-            </div>
+          {/* Col 2: Statutory Credentials */}
+          <div className="space-y-3">
+            <h4 className="font-bold text-[#FAF7EF] text-base">Statutory Credentials</h4>
+            <ul className="space-y-2 font-mono text-xs text-[#ddbfc3]">
+              <li className="flex flex-col">
+                <span className="text-[#B8A77E] text-[10px] uppercase">Corporate Identification No. (CIN)</span>
+                <span className="text-[#FAF7EF] font-semibold tracking-wider">U62013TZ2026PTC041310</span>
+              </li>
+              <li className="flex flex-col">
+                <span className="text-[#B8A77E] text-[10px] uppercase">Registrar of Companies</span>
+                <span className="text-[#FAF7EF]">ROC Coimbatore, Tamil Nadu</span>
+              </li>
+              <li className="flex flex-col">
+                <span className="text-[#B8A77E] text-[10px] uppercase">Company Entity</span>
+                <span className="text-[#FAF7EF]">Arfentra Private Limited</span>
+              </li>
+            </ul>
           </div>
 
-          {/* Col 3: Proprietary Platforms */}
-          <div className="space-y-3 text-xs">
-            <span className="font-mono text-zinc-200 uppercase font-bold tracking-wider block">
-              In-House Platforms
-            </span>
-            <div className="flex flex-col space-y-2.5">
-              <a href="#products" className="hover:text-white transition-colors">CT Upskilling Platform</a>
-              <a href="#products" className="hover:text-white transition-colors">Book Your Food POS</a>
-              <a href="#products" className="hover:text-white transition-colors">ECCE-to-PG Continuum</a>
-              <a href="#products" className="hover:text-white transition-colors">Zero-Wait Dining Engine</a>
-              <a href="#pricing" className="hover:text-white transition-colors">Investment Tiers</a>
-            </div>
+          {/* Col 3: Executive Channels */}
+          <div className="space-y-3">
+            <h4 className="font-bold text-[#FAF7EF] text-base">Executive Channels</h4>
+            <ul className="space-y-3 text-xs">
+              <li className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 text-[#fabc41] shrink-0 mt-0.5" />
+                <div className="flex flex-col">
+                  <span className="text-[#B8A77E] text-[10px] font-mono uppercase">Direct Desk</span>
+                  <a className="text-[#FAF7EF] hover:text-[#fabc41] transition-colors font-mono" href="tel:+919384040460">
+                    +91 9384040460
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Mail className="w-4 h-4 text-[#fabc41] shrink-0 mt-0.5" />
+                <div className="flex flex-col">
+                  <span className="text-[#B8A77E] text-[10px] font-mono uppercase">Institutional Inquiries</span>
+                  <a className="text-[#FAF7EF] hover:text-[#fabc41] transition-colors font-mono" href="mailto:arfentra@gmail.com">
+                    arfentra@gmail.com
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#B8A77E] shrink-0 mt-0.5" />
+                <div className="flex flex-col">
+                  <span className="text-[#B8A77E] text-[10px] font-mono uppercase">Physical Corridor</span>
+                  <span className="text-[#ddbfc3]">Coimbatore, Tamil Nadu, India</span>
+                </div>
+              </li>
+            </ul>
           </div>
 
-          {/* Col 4: Corporate & Coordinates */}
-          <div className="space-y-3 text-xs">
-            <span className="font-mono text-zinc-200 uppercase font-bold tracking-wider block">
-              Corporate Desk
-            </span>
-            <div className="flex flex-col space-y-2.5 font-mono">
-              <a href="mailto:arfentra@gmail.com" className="hover:text-white transition-colors flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                <span>arfentra@gmail.com</span>
+          {/* Col 4: Institutional Coordinates */}
+          <div className="space-y-3">
+            <h4 className="font-bold text-[#FAF7EF] text-base">Institutional Coordinates</h4>
+            <p className="text-xs text-[#ddbfc3] leading-relaxed font-sans">
+              Private executive chamber protocols. Scheduled board-level engagements and autonomous operational audits.
+            </p>
+            <div className="flex items-center gap-2 pt-2">
+              <a
+                href="#capabilities"
+                aria-label="Corporate Terminal"
+                className="w-9 h-9 rounded-lg bg-[#25181c] border border-[#3D1F2A] flex items-center justify-center text-[#FAF7EF] hover:bg-[#8c1d40] transition-all"
+              >
+                <Terminal className="w-4 h-4" />
               </a>
-              <a href="tel:+919384040460" className="hover:text-white transition-colors flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>+91 9384040460</span>
+              <a
+                href="#corporate"
+                aria-label="Security Shield"
+                className="w-9 h-9 rounded-lg bg-[#25181c] border border-[#3D1F2A] flex items-center justify-center text-[#FAF7EF] hover:bg-[#8c1d40] transition-all"
+              >
+                <ShieldCheck className="w-4 h-4 text-[#fabc41]" />
               </a>
-              <div className="flex items-start gap-2 text-zinc-400">
-                <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0 mt-0.5" />
-                <span>Coimbatore, Tamil Nadu, India</span>
-              </div>
-              <div className="pt-2 flex items-center gap-3">
-                <a
-                  href="https://linkedin.com/company/arfentra"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-sky-400 transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <span className="text-zinc-700">•</span>
-                <a
-                  href="https://instagram.com/arfentra"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-pink-400 transition-colors"
-                >
-                  Instagram
-                </a>
-              </div>
+              <a
+                href="#pricing"
+                aria-label="Executive Governance"
+                className="w-9 h-9 rounded-lg bg-[#25181c] border border-[#3D1F2A] flex items-center justify-center text-[#FAF7EF] hover:bg-[#8c1d40] transition-all"
+              >
+                <Landmark className="w-4 h-4 text-[#f1e1ba]" />
+              </a>
+              <a
+                href="#solutions"
+                aria-label="Global Network"
+                className="w-9 h-9 rounded-lg bg-[#25181c] border border-[#3D1F2A] flex items-center justify-center text-[#FAF7EF] hover:bg-[#8c1d40] transition-all"
+              >
+                <Globe className="w-4 h-4 text-[#ffb2bf]" />
+              </a>
             </div>
           </div>
 
         </div>
 
         {/* Disclaimer Strip */}
-        <div className="mt-12 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-          <p>© 2026 Arfentra Private Limited. All statutory rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <span>ROC Coimbatore</span>
-            <span>•</span>
-            <span>Ministry of Corporate Affairs (MCA)</span>
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[11px] text-[#B8A77E]">
+          <div>© 2026 ARFENTRA PRIVATE LIMITED. ALL RIGHTS RESERVED.</div>
+          <div className="flex items-center gap-6">
+            <a className="hover:text-[#FAF7EF] transition-colors" href="#corporate">Privacy Architecture</a>
+            <a className="hover:text-[#FAF7EF] transition-colors" href="#corporate">Institutional Governance</a>
+            <a className="hover:text-[#FAF7EF] transition-colors" href="#pricing">Terms of Retainer</a>
           </div>
         </div>
 

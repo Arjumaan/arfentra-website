@@ -90,42 +90,42 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({ onOpenConsulta
   const current = products[activeTab];
 
   return (
-    <section id="products" className="py-20 lg:py-28 relative bg-zinc-950/60 border-t border-zinc-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="products" className="py-20 lg:py-28 relative bg-[#0E0608] border-t border-[#3D1F2A]/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 font-mono text-xs text-sky-400 uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#25181c] border border-[#3D1F2A] font-mono text-xs text-[#ffb2bf] uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#fabc41]" />
               <span>Proprietary In-House IP</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#FAF7EF] leading-tight">
               Flagship Commercial Platforms
             </h2>
           </div>
-          <p className="text-zinc-400 text-sm max-w-md leading-relaxed">
+          <p className="text-[#B8A77E] text-base max-w-md leading-relaxed font-normal">
             Proof of engineering capability. We don’t just consult; we incubate, architect, and deploy high-concurrency commercial platforms into real consumer markets.
           </p>
         </div>
 
         {/* 21st.dev Style Pill Switcher */}
-        <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-zinc-900/80 border border-zinc-800 w-fit mb-10 shadow-lg">
+        <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-[#170b0f] border border-[#3D1F2A] w-fit mb-10 shadow-lg">
           <button
             onClick={() => setActiveTab('ct')}
             className={`relative px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-              activeTab === 'ct' ? 'text-zinc-950' : 'text-zinc-400 hover:text-white'
+              activeTab === 'ct' ? 'text-[#FAF7EF]' : 'text-[#B8A77E] hover:text-[#FAF7EF]'
             }`}
           >
             {activeTab === 'ct' && (
               <motion.div
                 layoutId="activeTabPill"
-                className="absolute inset-0 bg-gradient-to-r from-sky-400 to-emerald-400 rounded-xl"
+                className="absolute inset-0 bg-[#8c1d40] rounded-xl shadow-[0_0_16px_rgba(140,29,64,0.45)]"
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               />
             )}
             <span className="relative z-10 flex items-center gap-2">
-              <GraduationCap className="w-4 h-4" />
+              <GraduationCap className="w-4 h-4 text-[#fabc41]" />
               <span>CT Upskilling Platform</span>
             </span>
           </button>
@@ -133,18 +133,18 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({ onOpenConsulta
           <button
             onClick={() => setActiveTab('dining')}
             className={`relative px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-              activeTab === 'dining' ? 'text-zinc-950' : 'text-zinc-400 hover:text-white'
+              activeTab === 'dining' ? 'text-[#FAF7EF]' : 'text-[#B8A77E] hover:text-[#FAF7EF]'
             }`}
           >
             {activeTab === 'dining' && (
               <motion.div
                 layoutId="activeTabPill"
-                className="absolute inset-0 bg-gradient-to-r from-sky-400 to-emerald-400 rounded-xl"
+                className="absolute inset-0 bg-[#8c1d40] rounded-xl shadow-[0_0_16px_rgba(140,29,64,0.45)]"
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               />
             )}
             <span className="relative z-10 flex items-center gap-2">
-              <Utensils className="w-4 h-4" />
+              <Utensils className="w-4 h-4 text-[#fabc41]" />
               <span>Book Your Food</span>
             </span>
           </button>
@@ -159,22 +159,22 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({ onOpenConsulta
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
           >
-            <SpotlightCard className="p-6 sm:p-10 border-zinc-700/60 bg-zinc-900/50">
+            <SpotlightCard className="p-6 sm:p-10 border-[#3D1F2A] bg-[#241218]/90">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
                 {/* Left: Info & Feature Grid */}
                 <div className="lg:col-span-7 flex flex-col space-y-6">
                   <div>
-                    <span className="font-mono text-xs text-sky-400 font-bold uppercase tracking-wider block mb-2">
+                    <span className="font-mono text-xs text-[#fabc41] font-bold uppercase tracking-wider block mb-2">
                       {current.tag}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-[#FAF7EF] tracking-tight">
                       {current.title}
                     </h3>
-                    <p className="text-zinc-300 font-medium text-sm sm:text-base mt-2">
+                    <p className="text-[#f1e1ba] font-medium text-sm sm:text-base mt-2">
                       {current.headline}
                     </p>
-                    <p className="text-zinc-400 text-sm mt-3 leading-relaxed">
+                    <p className="text-[#ddbfc3] text-sm mt-3 leading-relaxed font-sans">
                       {current.description}
                     </p>
                   </div>
@@ -186,32 +186,32 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({ onOpenConsulta
                       return (
                         <div
                           key={feat.title}
-                          className="p-3.5 rounded-xl bg-zinc-950/70 border border-zinc-800/80 flex flex-col gap-1"
+                          className="p-3.5 rounded-xl bg-[#170b0f] border border-[#3D1F2A] flex flex-col gap-1"
                         >
-                          <div className="flex items-center gap-2 text-white font-semibold text-xs">
-                            <Icon className="w-4 h-4 text-emerald-400" />
+                          <div className="flex items-center gap-2 text-[#FAF7EF] font-semibold text-xs">
+                            <Icon className="w-4 h-4 text-[#fabc41]" />
                             <span>{feat.title}</span>
                           </div>
-                          <p className="text-[11px] text-zinc-400 leading-normal">{feat.desc}</p>
+                          <p className="text-[11px] text-[#B8A77E] leading-normal font-sans">{feat.desc}</p>
                         </div>
                       );
                     })}
                   </div>
 
                   {/* Bottom Metrics & CTA */}
-                  <div className="pt-4 border-t border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="pt-4 border-t border-[#3D1F2A] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-6 font-mono text-xs">
                       {current.metrics.map((m) => (
                         <div key={m.label}>
-                          <span className="text-zinc-500 block text-[10px] uppercase">{m.label}</span>
-                          <span className="text-white font-bold">{m.value}</span>
+                          <span className="text-[#B8A77E] block text-[10px] uppercase">{m.label}</span>
+                          <span className="text-[#FAF7EF] font-bold">{m.value}</span>
                         </div>
                       ))}
                     </div>
 
                     <button
                       onClick={() => onOpenConsultation(`${current.title} Inquiry`)}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-all cursor-pointer shadow-lg"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#8c1d40] text-[#FAF7EF] font-bold text-xs uppercase tracking-wider hover:bg-[#A8244D] shadow-[0_4px_16px_rgba(140,29,64,0.4)] transition-all cursor-pointer"
                     >
                       <span>{current.ctaLabel}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -222,19 +222,19 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({ onOpenConsulta
 
                 {/* Right: Isometric Visual Preview */}
                 <div className="lg:col-span-5 relative">
-                  <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl group">
+                  <div className="relative rounded-2xl overflow-hidden border border-[#3D1F2A] bg-[#170b0f] shadow-2xl group">
                     <img
                       src={current.image}
                       alt={current.title}
                       className="w-full h-72 sm:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E0608] via-[#0E0608]/20 to-transparent pointer-events-none" />
                     
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-xs">
-                      <span className="px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-700 text-zinc-200 backdrop-blur-md">
+                      <span className="px-3 py-1 rounded-full bg-[#170b0f]/90 border border-[#3D1F2A] text-[#FAF7EF] backdrop-blur-md">
                         Production Live Engine
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 backdrop-blur-md font-bold">
+                      <span className="px-3 py-1 rounded-full bg-[#8c1d40]/30 border border-[#8c1d40] text-[#ffb2bf] backdrop-blur-md font-bold">
                         Zero-Wait SLA
                       </span>
                     </div>

@@ -45,11 +45,11 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100 font-sans selection:bg-sky-500 selection:text-zinc-950 pb-20 lg:pb-0">
+    <div className="min-h-screen bg-[#0E0608] text-[#FAF7EF] font-sans selection:bg-[#8c1d40] selection:text-[#FAF7EF] pb-20 lg:pb-0">
       {/* Floating Pill Glass Navbar */}
       <Navbar onOpenConsultation={handleOpenConsultation} />
 
-      {/* Hero Section with Interactive 3D WebGL Canvas */}
+      {/* Hero Section */}
       <Hero onOpenConsultation={handleOpenConsultation} />
 
       {/* Certified Industry Muscle Across 4 Core Verticals */}
@@ -83,41 +83,41 @@ export const App: React.FC = () => {
       <Footer />
 
       {/* Mobile Floating Quick Navigation Tab Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 pb-safe bg-zinc-950/95 backdrop-blur-xl border-t border-zinc-800 shadow-[0_-4px_24px_rgba(0,0,0,0.8)] lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 pb-safe bg-[#0E0608]/95 backdrop-blur-xl border-t border-[#3D1F2A] shadow-[0_-4px_24px_rgba(0,0,0,0.8)] lg:hidden">
         <div className="h-16 px-4 flex items-center justify-around">
           <a
             href="#solutions"
-            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-zinc-400 hover:text-white transition-colors"
+            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-[#B8A77E] hover:text-[#FAF7EF] transition-colors"
           >
-            <Layers className="w-5 h-5 text-sky-400" />
+            <Layers className="w-5 h-5 text-[#ffb2bf]" />
             <span className="text-[10px] font-mono tracking-tight">Solutions</span>
           </a>
           <a
             href="#capabilities"
-            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-zinc-400 hover:text-white transition-colors"
+            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-[#B8A77E] hover:text-[#FAF7EF] transition-colors"
           >
-            <Cpu className="w-5 h-5 text-purple-400" />
+            <Cpu className="w-5 h-5 text-[#fabc41]" />
             <span className="text-[10px] font-mono tracking-tight">Mesh</span>
           </a>
           <a
             href="#roi-calculator"
-            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-zinc-400 hover:text-white transition-colors"
+            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-[#B8A77E] hover:text-[#FAF7EF] transition-colors"
           >
-            <Calculator className="w-5 h-5 text-champagne-gold" />
+            <Calculator className="w-5 h-5 text-[#f1e1ba]" />
             <span className="text-[10px] font-mono tracking-tight">ROI Calc</span>
           </a>
           <a
             href="#products"
-            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-zinc-400 hover:text-white transition-colors"
+            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-[#B8A77E] hover:text-[#FAF7EF] transition-colors"
           >
-            <Briefcase className="w-5 h-5 text-emerald-400" />
+            <Briefcase className="w-5 h-5 text-[#FAF7EF]" />
             <span className="text-[10px] font-mono tracking-tight">Products</span>
           </a>
           <button
             onClick={() => handleOpenConsultation()}
-            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-sky-400 font-bold hover:text-emerald-400 transition-colors cursor-pointer"
+            className="flex flex-col items-center justify-center gap-1 w-14 h-12 text-[#ffb2bf] font-bold hover:text-[#FAF7EF] transition-colors cursor-pointer"
           >
-            <Sparkles className="w-5 h-5 animate-pulse text-sky-400" />
+            <Sparkles className="w-5 h-5 animate-pulse text-[#fabc41]" />
             <span className="text-[10px] font-mono tracking-tight">Audit</span>
           </button>
         </div>

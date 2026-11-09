@@ -1,78 +1,72 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SpotlightCard } from './SpotlightCard';
-import { Truck, Utensils, Factory, ShieldCheck, Activity } from 'lucide-react';
 
 export const IndustrySectors: React.FC = () => {
   const sectors = [
     {
-      sector: 'Sector 01',
-      title: 'Heavy Logistics & Freight',
-      icon: Truck,
+      vertical: 'VERTICAL 01',
+      verticalColor: 'text-[#ffb2bf]',
+      title: 'Freight & Heavy Logistics',
       spritePos: '0% 0%',
-      metrics: [
-        { label: 'Active Fleet', value: '4,200+ Nodes' },
-        { label: 'Sync Latency', value: '<48ms Real-Time' },
-      ],
-      desc: 'Autonomous GPS telematics, instant weighbridge OCR, and route arbitration.',
+      desc: 'Autonomous bill-of-lading OCR extraction, dynamic fleet turn-around agents, automated weighbridge sync, and real-time transit exception dispatch.',
+      metricLabel: 'Turnaround Delta',
+      metricValue: '-42% Handling Time',
+      metricValueColor: 'text-[#fabc41]',
     },
     {
-      sector: 'Sector 02',
-      title: 'Smart Hospitality & Dining',
-      icon: Utensils,
+      vertical: 'VERTICAL 02',
+      verticalColor: 'text-[#f1e1ba]',
+      title: 'Institutional Hospitality',
       spritePos: '100% 0%',
-      metrics: [
-        { label: 'Table Turn Velocity', value: '+2.4x Speed' },
-        { label: 'Kitchen Sync', value: '100% Pre-Settled' },
-      ],
-      desc: 'Zero-wait dining orchestration, POS synchronization, and automated KDS dispatch.',
+      desc: 'Enterprise food-service dispatch systems, predictive raw-material replenishment agents, multi-outlet procurement loops, and POS ledger synchronizers.',
+      metricLabel: 'Spoilage Reduction',
+      metricValue: '-31% Waste Floor',
+      metricValueColor: 'text-[#fabc41]',
     },
     {
-      sector: 'Sector 03',
+      vertical: 'VERTICAL 03',
+      verticalColor: 'text-[#fabc41]',
       title: 'Industrial Manufacturing',
-      icon: Factory,
       spritePos: '0% 100%',
-      metrics: [
-        { label: 'IoT Sensor Streams', value: '18,500 Data Pts' },
-        { label: 'Defect Reduction', value: '-34% Error Drift' },
-      ],
-      desc: 'Computer vision quality inspection, PLC synchronization, and predictive downtime alerts.',
+      desc: 'Shop-floor telemetry aggregation, assembly-line optical anomaly flagging, proactive preventive machinery maintenance alerts, and vendor ERP bridges.',
+      metricLabel: 'Downtime Mitigation',
+      metricValue: '2.4x Mean Time Impr.',
+      metricValueColor: 'text-[#FAF7EF]',
     },
     {
-      sector: 'Sector 04',
-      title: 'Cloud Defense & EdTech',
-      icon: ShieldCheck,
+      vertical: 'VERTICAL 04',
+      verticalColor: 'text-[#ffb2bf]',
+      title: 'Sovereign Infra & Defense',
       spritePos: '100% 100%',
-      metrics: [
-        { label: 'Audited Uptime', value: '99.98% Strict SLA' },
-        { label: 'Security Model', value: 'Zero-Trust Mesh' },
-      ],
-      desc: 'End-to-end data encryption, continuous skill verification, and multi-tenant cloud isolation.',
+      desc: 'Air-gapped private vector stores, zero-exfiltration LLM inferencing, automated audit logging for statutory compliance, and executive access guards.',
+      metricLabel: 'Data Exfiltration',
+      metricValue: '0.00% Zero-Leak',
+      metricValueColor: 'text-[#ffb2bf]',
     },
   ];
 
   return (
-    <section id="industries" className="py-20 lg:py-28 relative bg-zinc-950/60 border-y border-zinc-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="industries" className="py-20 lg:py-28 relative bg-[#170b0f] border-y border-[#3D1F2A]/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 font-mono text-xs text-sky-400 uppercase tracking-wider">
-              <Activity className="w-3.5 h-3.5" />
-              <span>Certified Enterprise Deployments</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#fabc41] tracking-widest uppercase">
+              <span>[ SECTOR ALLIANCES ]</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-              Targeted Industry Muscle Across 4 Core Verticals
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#FAF7EF] leading-tight">
+              Engineered Specifically for High-Stakes Physical &amp; Digital Verticals.
             </h2>
           </div>
-          <p className="text-zinc-400 text-sm max-w-md leading-relaxed">
-            We don’t offer generic tech advice. Our multi-agent systems are battle-tested inside active freight hubs, busy restaurants, and industrial production lines.
+          <p className="text-[#B8A77E] text-sm sm:text-base max-w-md leading-relaxed font-normal">
+            Generic SaaS platforms fail under raw industrial demands. Arfentra builds custom agentic pipelines tailored to the precise regulatory and throughput bottlenecks of heavy sectors.
           </p>
         </div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {sectors.map((s, idx) => (
             <motion.div
               key={s.title}
@@ -80,45 +74,39 @@ export const IndustrySectors: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="flex"
             >
-              <SpotlightCard className="h-full flex flex-col justify-between group hover:border-sky-500/40">
+              <SpotlightCard className="h-full w-full flex flex-col justify-between group bg-[#241218]/90 border-[#3D1F2A] hover:border-[#8c1d40]/60 p-6 rounded-2xl">
                 <div>
-                  <div className="flex items-center gap-3.5 mb-5">
-                    {/* 3D Sprite Thumbnail */}
-                    <div className="w-14 h-14 rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 p-0.5 shrink-0 group-hover:border-sky-500/50 transition-colors shadow-lg">
-                      <div className="w-full h-full rounded-lg overflow-hidden relative">
-                        <img
-                          src="./assets/sector_badges_hq.png"
-                          alt={s.title}
-                          className="w-[200%] h-[200%] max-w-none object-cover relative group-hover:scale-110 transition-transform duration-500"
-                          style={{ objectPosition: s.spritePos }}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <span className="font-mono text-[10px] text-sky-400 font-bold tracking-wider uppercase block">
-                        {s.sector}
-                      </span>
-                      <h3 className="font-bold text-sm text-white group-hover:text-sky-300 transition-colors">
-                        {s.title}
-                      </h3>
+                  {/* 3D Sprite Thumbnail */}
+                  <div className="w-16 h-16 mb-6 rounded-xl bg-[#170b0f] border border-[#3D1F2A] p-2 shadow-inner overflow-hidden group-hover:border-[#fabc41]/50 transition-colors">
+                    <div className="w-full h-full rounded-lg overflow-hidden relative">
+                      <img
+                        src="./assets/sector_badges_hq.png"
+                        alt={s.title}
+                        className="w-[200%] h-[200%] max-w-none object-cover relative group-hover:scale-110 transition-transform duration-500"
+                        style={{ objectPosition: s.spritePos }}
+                      />
                     </div>
                   </div>
 
-                  <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                  <span className={`font-mono text-[11px] ${s.verticalColor} font-bold tracking-widest uppercase block mb-1`}>
+                    {s.vertical}
+                  </span>
+
+                  <h3 className="font-bold text-lg text-[#FAF7EF] mb-3 group-hover:text-[#fabc41] transition-colors">
+                    {s.title}
+                  </h3>
+
+                  <p className="text-xs text-[#ddbfc3] leading-relaxed mb-6 font-sans">
                     {s.desc}
                   </p>
                 </div>
 
                 {/* Metrics Footer */}
-                <div className="space-y-2 pt-4 border-t border-zinc-800/80 font-mono text-xs">
-                  {s.metrics.map((m) => (
-                    <div key={m.label} className="flex items-center justify-between">
-                      <span className="text-zinc-500">{m.label}:</span>
-                      <span className="text-zinc-200 font-semibold">{m.value}</span>
-                    </div>
-                  ))}
+                <div className="pt-4 flex items-center justify-between font-mono text-xs text-[#B8A77E] bg-[#170b0f]/80 px-3.5 py-2.5 rounded-xl border border-[#3D1F2A]/60">
+                  <span>{s.metricLabel}:</span>
+                  <span className={`font-bold ${s.metricValueColor}`}>{s.metricValue}</span>
                 </div>
               </SpotlightCard>
             </motion.div>

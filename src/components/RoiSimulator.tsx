@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { SpotlightCard } from './SpotlightCard';
-import { Calculator, ArrowRight, Sparkles, TrendingUp, Clock, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap } from 'lucide-react';
 
 export interface RoiTelemetryData {
   verticalName: string;
@@ -26,7 +26,7 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
       shortName: 'Freight & Logistics',
       efficiency: 0.42,
       subtext: 'Waybills & Fleet Ops',
-      badgeColor: 'text-sky-400',
+      badgePct: '42%',
     },
     {
       id: 'hospitality',
@@ -34,7 +34,7 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
       shortName: 'Hospitality & Dining',
       efficiency: 0.36,
       subtext: 'Procurement & POS',
-      badgeColor: 'text-champagne-gold',
+      badgePct: '36%',
     },
     {
       id: 'manufacturing',
@@ -42,7 +42,7 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
       shortName: 'Manufacturing',
       efficiency: 0.44,
       subtext: 'Weighbridge & Anomaly',
-      badgeColor: 'text-emerald-400',
+      badgePct: '44%',
     },
     {
       id: 'sovereign',
@@ -50,7 +50,7 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
       shortName: 'Sovereign Infra',
       efficiency: 0.38,
       subtext: 'Air-Gapped Telemetry',
-      badgeColor: 'text-purple-400',
+      badgePct: '38%',
     },
   ];
 
@@ -94,7 +94,6 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
     return {
       annualCostSaved: costSaved,
       annualHoursSaved: hoursSaved,
-      baselineAnnualCost: baselineCost,
       compressionPct: compPct,
       paybackDisplay: pbText,
       formattedSavings: formatINR(costSaved),
@@ -116,26 +115,26 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
   };
 
   return (
-    <section id="roi-calculator" className="py-20 lg:py-28 relative bg-[#09090b] border-t border-zinc-800/80">
+    <section id="roi-calculator" className="py-20 lg:py-28 relative bg-[#0E0608] border-t border-[#3D1F2A]/60">
       {/* Ambient background glows */}
-      <div className="pointer-events-none absolute top-10 left-1/4 w-[500px] h-[400px] bg-wine-deep/15 blur-[120px] rounded-full" />
-      <div className="pointer-events-none absolute bottom-10 right-1/4 w-[500px] h-[400px] bg-champagne-gold/10 blur-[130px] rounded-full" />
+      <div className="pointer-events-none absolute top-10 left-1/4 w-[500px] h-[400px] bg-[#540815]/20 blur-[130px] rounded-full" />
+      <div className="pointer-events-none absolute bottom-10 right-1/4 w-[500px] h-[400px] bg-[#720E1E]/15 blur-[140px] rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-champagne-gold/10 border border-champagne-gold/30 text-champagne-gold font-mono text-xs uppercase tracking-wider">
-            <Calculator className="w-3.5 h-3.5" />
-            <span>Quantifiable Value Simulator</span>
+        <div className="max-w-3xl mb-14 space-y-4">
+          <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#fabc41] tracking-widest uppercase">
+            <span className="w-2 h-2 rounded-full bg-[#fabc41] animate-pulse" />
+            <span>[ QUANTIFIABLE VALUE SIMULATOR ]</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-extrabold text-white tracking-tight leading-tight">
-            Calculate Your Projected Enterprise Operational Reclaim &amp; ROI.
+          <h2 className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-[#FAF7EF] tracking-tight leading-tight">
+            Calculate Your Enterprise Operational Reclaim &amp; ROI.
           </h2>
 
-          <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-            Eliminating deterministic manual friction yields immediate margin expansion. Model your projected capital recovery and workforce bandwidth based on empirical deployment telemetry.
+          <p className="text-[#B8A77E] text-base leading-relaxed font-normal">
+            Eliminating deterministic manual friction yields immediate bottom-line margin expansion. Model your projected capital recovery and workforce bandwidth based on empirical deployment telemetry.
           </p>
         </div>
 
@@ -143,13 +142,15 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Interactive Controls */}
-          <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-zinc-900/60 border border-zinc-800 shadow-2xl space-y-8 backdrop-blur-sm">
+          <div className="lg:col-span-6 p-7 sm:p-8 rounded-3xl bg-[#241218]/90 border border-[#3D1F2A] shadow-xl space-y-8 backdrop-blur-md">
             
             {/* Step 1: Industry Vertical Selection */}
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-zinc-400 uppercase tracking-wider font-semibold">1. Select Target Vertical</span>
-                <span className="text-champagne-gold font-bold">
+                <span className="text-[#B8A77E] uppercase tracking-wider font-semibold">
+                  1. Industry Operational Vertical
+                </span>
+                <span className="text-[#ffb2bf] font-bold">
                   {compressionPct}% Compression Benchmark
                 </span>
               </div>
@@ -162,19 +163,17 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
                       key={v.id}
                       type="button"
                       onClick={() => setSelectedVertical(v)}
-                      className={`p-3.5 rounded-2xl text-left transition-all cursor-pointer font-mono border ${
+                      className={`px-3.5 py-2.5 rounded-xl text-left transition-all cursor-pointer font-mono text-xs border ${
                         isSelected
-                          ? 'bg-zinc-800/90 border-champagne-gold text-white shadow-lg shadow-champagne-gold/10 ring-1 ring-champagne-gold/40'
-                          : 'bg-zinc-950/70 border-zinc-800/80 text-zinc-400 hover:text-white hover:border-zinc-700'
+                          ? 'bg-[#8c1d40] text-[#FAF7EF] border-[#ffb2bf] shadow-[0_0_12px_rgba(140,29,64,0.45)]'
+                          : 'bg-[#25181c] text-[#ddbfc3] border-transparent hover:border-[#3D1F2A] hover:text-[#FAF7EF]'
                       }`}
                     >
-                      <div className="flex items-center justify-between text-xs font-bold">
+                      <div className="flex items-center justify-between font-bold">
                         <span>{v.shortName}</span>
-                        <span className={v.badgeColor}>
-                          {Math.round(v.efficiency * 100)}%
-                        </span>
+                        <span className="text-[11px] text-[#FAF7EF]">{v.badgePct}</span>
                       </div>
-                      <span className="text-[11px] text-zinc-500 block mt-1 font-normal font-sans">
+                      <span className="text-[10px] text-[#B8A77E] block mt-0.5 font-normal font-sans">
                         {v.subtext}
                       </span>
                     </button>
@@ -186,69 +185,69 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
             {/* Step 2: Slider - Monthly Hours */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label htmlFor="hours-range" className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+                <label htmlFor="hours-slider" className="text-xs font-mono text-[#B8A77E] uppercase tracking-wider font-semibold">
                   2. Monthly Operational Labor Hours
                 </label>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-950 border border-zinc-800 font-mono text-champagne-gold text-sm font-bold">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#170b0f] font-mono text-[#fabc41] text-sm font-bold border border-[#3D1F2A]">
                   <span>{monthlyHours.toLocaleString('en-IN')}</span>
-                  <span className="text-[11px] text-zinc-500 font-normal">hrs/mo</span>
+                  <span className="text-[11px] text-[#B8A77E] font-normal">hrs/mo</span>
                 </div>
               </div>
 
               <input
-                id="hours-range"
+                id="hours-slider"
                 type="range"
                 min="200"
                 max="5000"
                 step="50"
                 value={monthlyHours}
                 onChange={(e) => setMonthlyHours(Number(e.target.value))}
-                className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-champagne-gold"
+                className="w-full h-2 bg-[#35262a] rounded-lg appearance-none cursor-pointer accent-[#A8244D]"
               />
 
-              <div className="flex justify-between font-mono text-[11px] text-zinc-500">
-                <span>200 hrs (Small Squad)</span>
-                <span>2,500 hrs (Full Dept)</span>
-                <span>5,000+ hrs (Division)</span>
+              <div className="flex justify-between font-mono text-[10px] sm:text-[11px] text-[#ddbfc3]">
+                <span>200 hrs (Small Team)</span>
+                <span>2,500 hrs (Department)</span>
+                <span>5,000+ hrs (Enterprise Division)</span>
               </div>
             </div>
 
             {/* Step 3: Slider - Loaded Hourly Rate */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label htmlFor="rate-range" className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+                <label htmlFor="rate-slider" className="text-xs font-mono text-[#B8A77E] uppercase tracking-wider font-semibold">
                   3. Fully-Loaded Hourly Rate (₹)
                 </label>
-                <div className="flex items-center gap-1 px-3 py-1 rounded-lg bg-zinc-950 border border-zinc-800 font-mono text-emerald-400 text-sm font-bold">
+                <div className="flex items-center gap-1 px-3 py-1 rounded-lg bg-[#170b0f] font-mono text-[#ffb2bf] text-sm font-bold border border-[#3D1F2A]">
                   <span>₹</span>
                   <span>{hourlyRate.toLocaleString('en-IN')}</span>
-                  <span className="text-[11px] text-zinc-500 font-normal">/ hr</span>
+                  <span className="text-[11px] text-[#B8A77E] font-normal">/ hr</span>
                 </div>
               </div>
 
               <input
-                id="rate-range"
+                id="rate-slider"
                 type="range"
                 min="400"
                 max="3500"
                 step="50"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
-                className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                className="w-full h-2 bg-[#35262a] rounded-lg appearance-none cursor-pointer accent-[#ffb2bf]"
               />
 
-              <div className="flex justify-between font-mono text-[11px] text-zinc-500">
+              <div className="flex justify-between font-mono text-[10px] sm:text-[11px] text-[#ddbfc3]">
                 <span>₹400/hr (Back-Office)</span>
-                <span>₹1,500/hr (Sr Analyst)</span>
-                <span>₹3,500/hr (Lead Eng)</span>
+                <span>₹1,500/hr (Senior Analyst)</span>
+                <span>₹3,500/hr (Specialist Eng)</span>
               </div>
             </div>
 
             {/* Verification Note */}
-            <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-start gap-2.5 font-mono text-xs text-zinc-400">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-xl bg-[#170b0f]/80 border border-[#3D1F2A]/60 flex items-start gap-2.5 font-mono text-[11px] text-[#B8A77E]">
+              <ShieldCheck className="w-4 h-4 text-[#fabc41] shrink-0 mt-0.5" />
               <span>
-                Benchmark telemetry calibrated against live Indian corporate deployments under MCA Reg <strong className="text-zinc-200">U62013TZ2026PTC041310</strong>.
+                Benchmark metrics calibrated against live deployments audited under MCA Reg <strong className="text-[#FAF7EF]">U62013TZ2026PTC041310</strong>.
               </span>
             </div>
 
@@ -256,22 +255,22 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
 
           {/* Right Column: Live Results Display */}
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <SpotlightCard className="p-7 sm:p-9 rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-950 border border-champagne-gold/30 shadow-2xl relative overflow-hidden">
+            <SpotlightCard className="p-7 sm:p-8 rounded-3xl bg-[#25181c] border border-[#8c1d40]/40 shadow-[0_12px_40px_rgba(140,29,64,0.35)] relative overflow-hidden">
               <div className="relative z-10 space-y-6">
                 
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs uppercase tracking-wider text-champagne-gold font-bold">
-                    Annualized Bottom-Line Value
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#ffb2bf] font-bold">
+                    ANNUALIZED BOTTOM-LINE VALUE
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-emerald-500/40 font-mono text-[11px] text-emerald-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    LIVE TELEMETRY
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#291c20] font-mono text-[10px] text-[#fabc41] border border-[#fabc41]/30">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#fabc41] animate-pulse" />
+                    LIVE COMPUTATION
                   </span>
                 </div>
 
                 {/* Main Annual Saved Hero */}
                 <div>
-                  <span className="font-mono text-zinc-400 text-xs uppercase tracking-wider block">
+                  <span className="font-mono text-[#B8A77E] text-xs uppercase tracking-wider block">
                     Projected Annual Capital Saved
                   </span>
                   <div className="mt-1 flex items-baseline gap-2">
@@ -279,44 +278,44 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
                       key={formattedSavings}
                       initial={{ opacity: 0.8, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight"
+                      className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-[#FAF7EF] tracking-tight"
                     >
                       {formattedSavings}
                     </motion.span>
-                    <span className="font-mono text-emerald-400 font-bold text-sm sm:text-base">
+                    <span className="font-mono text-[#fabc41] font-bold text-sm sm:text-base">
                       / year
                     </span>
                   </div>
-                  <p className="mt-2 text-xs text-zinc-400 leading-relaxed font-sans">
-                    Direct operational budget reclaimed across recurring clerical, verification, OCR, and manual data pipelines.
+                  <p className="mt-1.5 text-xs text-[#ddbfc3] leading-relaxed font-sans">
+                    Direct operational budget reclaimed across recurring clerical, validation, and manual data pipelines.
                   </p>
                 </div>
 
                 {/* Comparative Compression Bar Gauge */}
-                <div className="p-4 rounded-2xl bg-zinc-950/90 border border-zinc-800 space-y-2.5">
-                  <div className="flex items-center justify-between font-mono text-xs">
-                    <span className="text-zinc-400">Operational Distribution</span>
-                    <span className="text-champagne-gold font-bold">{compressionPct}% Reclaimed</span>
+                <div className="p-4 rounded-2xl bg-[#170b0f]/90 border border-[#3D1F2A]/60 space-y-2.5">
+                  <div className="flex items-center justify-between font-mono text-[11px]">
+                    <span className="text-[#B8A77E]">Operational Workload Distribution</span>
+                    <span className="text-[#ffb2bf] font-bold">{compressionPct}% Reclaimed</span>
                   </div>
 
-                  <div className="w-full h-3 rounded-full bg-zinc-800 overflow-hidden flex shadow-inner">
+                  <div className="w-full h-3 rounded-full bg-[#241218] overflow-hidden flex shadow-inner">
                     <div
-                      className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-sky-400 transition-all duration-300"
+                      className="h-full bg-gradient-to-r from-[#A8244D] to-[#ffb2bf] transition-all duration-300"
                       style={{ width: `${compressionPct}%` }}
                     />
                     <div
-                      className="h-full bg-zinc-700/60 transition-all duration-300"
+                      className="h-full bg-[#35262a] transition-all duration-300"
                       style={{ width: `${100 - compressionPct}%` }}
                     />
                   </div>
 
-                  <div className="flex items-center justify-between font-mono text-[11px] text-zinc-400 pt-0.5">
+                  <div className="flex items-center justify-between font-mono text-[10px] text-[#B8A77E] pt-0.5">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      <span className="w-2 h-2 rounded-full bg-[#ffb2bf]" />
                       Automated Overhead ({compressionPct}%)
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-zinc-500" />
+                      <span className="w-2 h-2 rounded-full bg-[#35262a]" />
                       High-Touch Human Focus ({100 - compressionPct}%)
                     </span>
                   </div>
@@ -324,37 +323,28 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
 
                 {/* Sub Metrics Quad */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800">
-                    <div className="flex items-center gap-1.5 text-zinc-400 text-[11px] font-mono uppercase">
-                      <Clock className="w-3 h-3 text-sky-400" />
-                      <span>Reclaimed Hours</span>
-                    </div>
-                    <div className="font-mono text-lg font-bold text-white mt-1">
+                  <div className="p-3.5 rounded-xl bg-[#241218] border border-[#3D1F2A]/60">
+                    <div className="font-mono text-[10px] uppercase text-[#B8A77E]">Annual Hours Reclaimed</div>
+                    <div className="font-mono text-base sm:text-lg font-bold text-[#FAF7EF] mt-1">
                       {Math.round(annualHoursSaved).toLocaleString('en-IN')} hrs
                     </div>
-                    <span className="text-[10px] text-emerald-400 font-mono">Freed Team Capacity</span>
+                    <span className="text-[10px] text-[#fabc41] font-mono">Freed Capacity</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800">
-                    <div className="flex items-center gap-1.5 text-zinc-400 text-[11px] font-mono uppercase">
-                      <TrendingUp className="w-3 h-3 text-emerald-400" />
-                      <span>Baseline Cost</span>
-                    </div>
-                    <div className="font-mono text-lg font-bold text-zinc-200 mt-1">
+                  <div className="p-3.5 rounded-xl bg-[#241218] border border-[#3D1F2A]/60">
+                    <div className="font-mono text-[10px] uppercase text-[#B8A77E]">Baseline Annual Cost</div>
+                    <div className="font-mono text-base sm:text-lg font-bold text-[#ddbfc3] mt-1">
                       {formattedBaseline}
                     </div>
-                    <span className="text-[10px] text-zinc-500 font-mono">Pre-Automation Cost</span>
+                    <span className="text-[10px] text-[#B8A77E] font-mono">Pre-Automation</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800 col-span-2 sm:col-span-1">
-                    <div className="flex items-center gap-1.5 text-zinc-400 text-[11px] font-mono uppercase">
-                      <Zap className="w-3 h-3 text-champagne-gold" />
-                      <span>MVP Payback</span>
-                    </div>
-                    <div className="font-mono text-lg font-bold text-champagne-gold mt-1">
+                  <div className="p-3.5 rounded-xl bg-[#241218] border border-[#3D1F2A]/60 col-span-2 sm:col-span-1">
+                    <div className="font-mono text-[10px] uppercase text-[#B8A77E]">Prototype Payback</div>
+                    <div className="font-mono text-base sm:text-lg font-bold text-[#f1e1ba] mt-1">
                       {paybackDisplay}
                     </div>
-                    <span className="text-[10px] text-zinc-400 font-mono">vs ₹15,000 MVP</span>
+                    <span className="text-[10px] text-[#B8A77E] font-mono">vs ₹15,000 MVP</span>
                   </div>
                 </div>
 
@@ -363,16 +353,16 @@ export const RoiSimulator: React.FC<RoiSimulatorProps> = ({ onLockStrategy }) =>
                   <button
                     type="button"
                     onClick={handleLockIn}
-                    className="w-full sm:flex-1 py-4 px-6 rounded-xl bg-gradient-to-r from-sky-400 via-emerald-400 to-teal-300 text-zinc-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl shadow-sky-500/20 hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer"
+                    className="w-full sm:flex-1 py-3.5 px-6 rounded-xl bg-[#8c1d40] text-[#FAF7EF] font-bold text-sm text-center flex items-center justify-center gap-2.5 shadow-[0_6px_20px_rgba(140,29,64,0.45)] hover:bg-[#A8244D] transition-all active:scale-95 group cursor-pointer"
                   >
-                    <Sparkles className="w-4 h-4 text-zinc-950" />
+                    <Zap className="w-4 h-4 text-[#FAF7EF] group-hover:rotate-12 transition-transform" />
                     <span>Lock In This Reclaim Strategy</span>
-                    <ArrowRight className="w-4 h-4 text-zinc-950" />
+                    <ArrowRight className="w-4 h-4 text-[#FAF7EF]" />
                   </button>
 
                   <a
                     href="#pricing"
-                    className="w-full sm:w-auto py-4 px-5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white font-mono text-xs uppercase tracking-wider text-center border border-zinc-700 transition-colors"
+                    className="w-full sm:w-auto py-3.5 px-5 rounded-xl bg-[#35262a] text-[#FAF7EF] font-bold text-sm text-center hover:bg-[#45353a] transition-all border border-white/5"
                   >
                     Inspect Tiers
                   </a>
