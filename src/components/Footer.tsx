@@ -41,10 +41,10 @@ export const Footer: React.FC = () => {
             </span>
             <div className="flex flex-col space-y-2.5">
               <a href="#solutions" className="hover:text-white transition-colors">Autonomous Agent Loops</a>
-              <a href="#solutions" className="hover:text-white transition-colors">Freight &amp; Fleet Telematics</a>
-              <a href="#solutions" className="hover:text-white transition-colors">Industrial Computer Vision</a>
-              <a href="#solutions" className="hover:text-white transition-colors">Custom Cloud ERP Connectors</a>
-              <a href="#solutions" className="hover:text-white transition-colors">Zero-Trust Hardening</a>
+              <a href="#capabilities" className="hover:text-white transition-colors">Command Dome &amp; Digital Twin</a>
+              <a href="#roi-calculator" className="hover:text-white transition-colors">ROI &amp; Reclaim Simulator</a>
+              <a href="#industries" className="hover:text-white transition-colors">4 Sector Alliances</a>
+              <a href="#pricing" className="hover:text-white transition-colors">Transparent Investment Tiers</a>
             </div>
           </div>
 

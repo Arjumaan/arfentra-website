@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SpotlightCard } from './SpotlightCard';
 import confetti from 'canvas-confetti';
-import { ShieldCheck, Copy, Check, Building2, FileCheck2, Cpu } from 'lucide-react';
+import { ShieldCheck, Copy, Check, Building2, FileCheck2, Cpu, CheckCircle2, ExternalLink } from 'lucide-react';
 
 export const CorporateVerification: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -20,7 +20,7 @@ export const CorporateVerification: React.FC = () => {
   };
 
   return (
-    <section id="corporate" className="py-20 lg:py-28 relative">
+    <section id="corporate" className="py-20 lg:py-28 relative bg-[#09090b]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Command Center & Digital Twin Banner */}
@@ -46,7 +46,7 @@ export const CorporateVerification: React.FC = () => {
 
             <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div className="space-y-1.5 max-w-xl">
-                <span className="font-mono text-xs uppercase tracking-widest text-sky-400 font-bold">
+                <span className="font-mono text-xs uppercase tracking-widest text-champagne-gold font-bold">
                   Sovereign Architecture
                 </span>
                 <h3 className="text-xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -63,90 +63,155 @@ export const CorporateVerification: React.FC = () => {
         </div>
 
         {/* Corporate Statutory Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left: Official Stamp & Registry Details */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
-            <div className="relative group">
-              <div className="w-44 h-44 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-950 border-2 border-emerald-500/40 p-3 shadow-2xl flex items-center justify-center relative overflow-hidden group-hover:border-emerald-400 transition-colors">
+          <div className="lg:col-span-5 bg-zinc-900/60 border border-zinc-800 p-7 sm:p-8 rounded-3xl shadow-2xl relative space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="w-20 h-20 shrink-0 bg-zinc-950 border border-zinc-800 p-2 rounded-2xl flex items-center justify-center shadow-inner overflow-hidden">
                 <img
                   src="./assets/corporate_stamp.png"
-                  alt="Official Arfentra Stamp"
-                  className="w-full h-full object-contain filter contrast-125 drop-shadow-md"
+                  alt="Official Arfentra Private Limited MCA Stamp"
+                  className="w-full h-full object-contain filter contrast-125"
                 />
               </div>
-              <div className="pointer-events-none absolute -inset-4 bg-emerald-500/10 rounded-full blur-2xl -z-10" />
+              <div>
+                <span className="font-mono text-[10px] text-champagne-gold uppercase tracking-widest block font-bold">
+                  Regulatory Authority
+                </span>
+                <h3 className="font-bold text-white text-lg sm:text-xl">Ministry of Corporate Affairs</h3>
+                <p className="text-xs text-zinc-400">Government of India Statutory Registry</p>
+              </div>
             </div>
 
-            <div className="space-y-2">
-              <span className="font-mono text-xs text-sky-400 uppercase tracking-widest block font-bold">
-                Statutory Corporate Identity
-              </span>
-              <h3 className="text-2xl font-bold text-white">Arfentra Private Limited</h3>
-              <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
-                Incorporated under the Ministry of Corporate Affairs (MCA), Government of India. Full legal accountability, compliant billing, and enterprise SLA contracts.
-              </p>
-            </div>
-
-            {/* Verification Card with Copy CIN */}
-            <div className="p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800 w-full max-w-sm flex flex-col gap-2.5 font-mono text-xs">
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-500">CIN / REG NO:</span>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white font-bold">{cinNumber}</span>
+            <div className="space-y-3 font-mono text-xs bg-zinc-950/90 border border-zinc-800/80 p-5 rounded-2xl">
+              <div className="flex flex-col border-b border-zinc-800/80 pb-2.5">
+                <span className="text-zinc-500 text-[10px] uppercase">Corporate Identity Number (CIN)</span>
+                <div className="flex items-center justify-between mt-1">
+                  <span className="text-white font-bold tracking-wider">{cinNumber}</span>
                   <button
                     onClick={handleCopyCin}
                     className="p-1 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors cursor-pointer"
-                    title="Copy CIN to clipboard"
+                    title="Copy CIN"
                   >
                     {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                   </button>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-500">LEGAL STATUS:</span>
-                <span className="text-emerald-400 font-semibold">Active Private Limited</span>
+              <div className="flex flex-col border-b border-zinc-800/80 pb-2.5">
+                <span className="text-zinc-500 text-[10px] uppercase">Registrar Office</span>
+                <span className="text-zinc-200">ROC Coimbatore, Tamil Nadu, India</span>
               </div>
 
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-500">JURISDICTION:</span>
-                <span className="text-zinc-300">ROC Coimbatore / Tamil Nadu</span>
+              <div className="flex flex-col border-b border-zinc-800/80 pb-2.5">
+                <span className="text-zinc-500 text-[10px] uppercase">Statutory Entity Classification</span>
+                <span className="text-zinc-200">Company Limited by Shares · Private Limited</span>
               </div>
+
+              <div className="flex flex-col">
+                <span className="text-zinc-500 text-[10px] uppercase">Authorized Operations Base</span>
+                <span className="text-zinc-200">Coimbatore Central Technology Corridor</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
+              <span>Public record verifiable via MCA.gov.in official portal</span>
+              <a
+                href="https://www.mca.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors ml-auto"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
 
-          {/* Right: Enterprise Assurance Pillars */}
-          <div className="lg:col-span-7 flex flex-col space-y-4">
-            <SpotlightCard className="p-6 space-y-2">
-              <div className="flex items-center gap-2.5 text-white font-bold text-base">
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                <h4>Commercial IP &amp; Source Code Ownership</h4>
+          {/* Right: Verified Production Audits & Enterprise Assurance */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 font-mono text-xs text-sky-400 tracking-wider uppercase font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>Verified Production Audits</span>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                When Arfentra builds your enterprise software, 100% of the custom source code, trained neural model weights, and proprietary architecture artifacts belong entirely to your company.
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Engineered for Irrefutable Business Results.
+              </h2>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Our implementations are judged by harsh metrics: raw hours removed from manual cycles, reduction in invoice settlement disputes, and uninterrupted SLA uptime.
               </p>
-            </SpotlightCard>
+            </div>
 
-            <SpotlightCard className="p-6 space-y-2">
-              <div className="flex items-center gap-2.5 text-white font-bold text-base">
-                <FileCheck2 className="w-5 h-5 text-sky-400" />
-                <h4>Tier-1 Enterprise Service Level Agreements (SLAs)</h4>
-              </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                Guaranteed response windows, automated failover redundancy, and dedicated on-call engineering dispatch for mission-critical freight, industrial, and dining pipelines.
-              </p>
-            </SpotlightCard>
+            {/* 2 Audited Production Case Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <SpotlightCard className="p-6 space-y-2.5 bg-zinc-900/50">
+                <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
+                  <span>SECTOR: REGIONAL FREIGHT</span>
+                  <span className="text-emerald-400 font-bold">AUDITED</span>
+                </div>
+                <div className="text-3xl font-extrabold text-emerald-400 tracking-tight">-42%</div>
+                <h4 className="font-bold text-white text-sm">Gate Handling Turnaround</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Automated OCR manifest checking shaved 22 minutes per container arrival across 3 hub yards.
+                </p>
+              </SpotlightCard>
 
-            <SpotlightCard className="p-6 space-y-2">
-              <div className="flex items-center gap-2.5 text-white font-bold text-base">
-                <Building2 className="w-5 h-5 text-purple-400" />
-                <h4>Statutory MCA Billing &amp; GST Compliance</h4>
+              <SpotlightCard className="p-6 space-y-2.5 bg-zinc-900/50">
+                <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
+                  <span>SECTOR: INDUSTRIAL PARTS</span>
+                  <span className="text-champagne-gold font-bold">AUDITED</span>
+                </div>
+                <div className="text-3xl font-extrabold text-white tracking-tight">₹1.4M</div>
+                <h4 className="font-bold text-white text-sm">Annual Leakage Reclaimed</h4>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Zero-drift reconciliation between weighbridge metrics and dynamic vendor credit notes.
+                </p>
+              </SpotlightCard>
+            </div>
+
+            {/* Enterprise Guarantees Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-zinc-800 space-y-1">
+                <div className="flex items-center gap-2 text-white font-bold text-xs">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>100% IP Handover</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-relaxed">
+                  All custom code, trained neural model weights, and schemas belong entirely to you.
+                </p>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                Formal corporate invoices, GST credit compliance, NDAs, and clear milestone contracts backed by an Indian incorporated Private Limited entity.
-              </p>
-            </SpotlightCard>
+
+              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-zinc-800 space-y-1">
+                <div className="flex items-center gap-2 text-white font-bold text-xs">
+                  <FileCheck2 className="w-4 h-4 text-sky-400" />
+                  <span>SLA Guarantee</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-relaxed">
+                  99.98% uptime guarantee with on-call engineer dispatch for mission-critical nodes.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-zinc-800 space-y-1">
+                <div className="flex items-center gap-2 text-white font-bold text-xs">
+                  <Building2 className="w-4 h-4 text-purple-400" />
+                  <span>GST Billing</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-relaxed">
+                  Legally compliant corporate invoicing with formal NDAs backed by an Indian entity.
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-500">
+              <span>AUDIT CADENCE: CONTINUOUS</span>
+              <span>•</span>
+              <span>TOLERANCE DRIFT: &lt; 0.02%</span>
+              <span>•</span>
+              <span className="text-white font-semibold">ENTERPRISE GRADE SLA</span>
+            </div>
+
           </div>
 
         </div>

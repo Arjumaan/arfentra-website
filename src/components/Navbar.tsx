@@ -20,10 +20,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
 
   const navLinks = [
     { label: 'Solutions', href: '#solutions' },
-    { label: 'Products', href: '#products' },
+    { label: 'Capabilities', href: '#capabilities' },
     { label: 'Industries', href: '#industries' },
+    { label: 'ROI Simulator', href: '#roi-calculator' },
+    { label: 'Products', href: '#products' },
     { label: 'Pricing', href: '#pricing' },
-    { label: 'Results', href: '#results' },
     { label: 'Corporate', href: '#corporate' },
   ];
 

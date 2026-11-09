@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { X, Check, Phone, Sparkles } from 'lucide-react';
+import { X, Check, Phone, Sparkles, Building2, TrendingUp, Clock } from 'lucide-react';
+import { RoiTelemetryData } from './RoiSimulator';
 
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedTier?: string;
+  telemetry?: RoiTelemetryData;
 }
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   isOpen,
   onClose,
   preselectedTier,
+  telemetry,
 }) => {
   const [tier, setTier] = useState('Starter Digital MVP (₹15,000)');
   const [submitted, setSubmitted] = useState(false);
@@ -29,6 +32,15 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       setTier(preselectedTier);
     }
   }, [preselectedTier]);
+
+  useEffect(() => {
+    if (isOpen && telemetry && !formData.message) {
+      setFormData((prev) => ({
+        ...prev,
+        message: `Inquiring about Arfentra deterministic multi-agent deployment. Target reclaim: ${telemetry.formattedSavings}/year across ${telemetry.verticalName} (~${telemetry.monthlyHours.toLocaleString('en-IN')} hrs/mo at ₹${telemetry.hourlyRate}/hr).`,
+      }));
+    }
+  }, [isOpen, telemetry, formData.message]);
 
   useEffect(() => {
     if (isOpen) {
@@ -103,6 +115,26 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   </p>
                 </div>
 
+                {/* Telemetry Preview if available */}
+                {telemetry && (
+                  <div className="mb-5 p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                    <div className="flex items-center gap-1.5 text-zinc-300">
+                      <Building2 className="w-3.5 h-3.5 text-champagne-gold" />
+                      <span className="text-[11px] font-bold text-white truncate max-w-[140px] sm:max-w-none">
+                        {telemetry.verticalName}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+                      <TrendingUp className="w-3.5 h-3.5" />
+                      <span>{telemetry.formattedSavings}/yr</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-sky-400">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>{telemetry.compressionPct}% Reclaim</span>
+                    </div>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -171,7 +203,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     <select
                       value={tier}
                       onChange={(e) => setTier(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white text-sm focus:border-sky-500 focus:outline-none transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white text-sm focus:border-sky-500 focus:outline-none transition-colors cursor-pointer"
                     >
                       <option value="Starter Digital MVP (₹15,000)">Starter Digital MVP Sprint (₹15,000)</option>
                       <option value="Growth & Automation (₹75k - ₹2.5L)">Growth &amp; Automation Platform (₹75k – ₹2.5L)</option>
