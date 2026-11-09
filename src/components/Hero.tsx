@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ThreeCanvas } from './ThreeCanvas';
-import { ArrowRight, Cpu, Shield, Calendar, Phone, Sparkles } from 'lucide-react';
+import { SpotlightCard } from './SpotlightCard';
+import { PhoneCall, Network, ShieldCheck } from 'lucide-react';
 
 interface HeroProps {
   onOpenConsultation: (tier?: string) => void;
@@ -9,171 +9,201 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   return (
-    <section className="relative w-full overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28">
-      {/* 21st.dev Style Ambient Radial Gradients */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-wine-deep/30 via-sky-500/15 to-transparent blur-[130px] rounded-full" />
-      <div className="pointer-events-none absolute top-1/3 -right-20 w-[480px] h-[480px] bg-emerald-500/10 blur-[120px] rounded-full" />
+    <section className="relative w-full overflow-hidden bg-[#0E0608] pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-36 lg:pb-28">
+      {/* Atmospheric Ambient Lighting Rings */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-[#540815]/35 via-[#8c1d40]/20 to-transparent blur-3xl opacity-75" />
+      <div className="pointer-events-none absolute top-1/3 -right-24 w-[480px] h-[480px] bg-[#720E1E]/15 blur-[120px] rounded-full" />
       
       {/* Subtle modern dot matrix pattern */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(250,247,239,0.04)_1px,transparent_1px)] [background-size:28px_28px] opacity-70" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
-        {/* Top Badges Pill Cluster */}
-        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-6">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/80 border border-white/10 text-xs text-zinc-300 shadow-sm backdrop-blur-md"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-mono text-[11px] uppercase tracking-wider font-semibold">
-              Enterprise AI &amp; Autonomous Agentic Engines
+        {/* Top Micro Badges Pill Cluster */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-wrap items-center gap-3 mb-8"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#25181c] border border-[#d4c59f]/20 shadow-[0_0_1px_1px_rgba(214,199,161,0.2)] backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-[#A8244D] animate-pulse" />
+            <span className="font-mono text-[#FAF7EF] tracking-wider uppercase text-[11px] font-semibold">
+              ENTERPRISE AI &amp; AUTONOMOUS AGENTIC ENGINES
             </span>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-champagne-gold/10 border border-champagne-gold/30 text-xs font-mono text-champagne-gold"
-          >
-            <Shield className="w-3.5 h-3.5 text-champagne-gold" />
-            <span>MCA REG: <strong className="text-white">U62013TZ2026PTC041310</strong></span>
-          </motion.div>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#291c20] border border-white/5 shadow-sm">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#fabc41]" />
+            <span className="font-mono text-[#B8A77E] text-[11px] tracking-wide">
+              MCA REG: <strong className="text-[#FAF7EF]">U62013TZ2026PTC041310</strong>
+            </span>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/60 border border-zinc-800 text-[11px] font-mono text-zinc-400"
-          >
-            <span className="text-emerald-400 font-semibold">ROC COIMBATORE</span> · TAMIL NADU
-          </motion.div>
-        </div>
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#170b0f] border border-white/5 text-[#ddbfc3] font-mono text-[11px]">
+            <span className="text-[#fabc41] font-semibold">ROC COIMBATORE</span> · TAMIL NADU
+          </div>
+        </motion.div>
 
-        {/* Hero Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        {/* Hero Typography & Side Stats Card Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-12">
           
-          {/* Left Column: Headlines & CTA */}
+          {/* Left Column: Headlines & CTA (8 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-6 flex flex-col space-y-6"
+            className="lg:col-span-8 space-y-6"
           >
-            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight text-white leading-[1.12]">
+            <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-extrabold text-[#FAF7EF] tracking-tight leading-[1.12] max-w-4xl">
               Reduce Operational Workload by up to{' '}
-              <span className="bg-gradient-to-r from-sky-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffb2bf] via-[#FAF7EF] to-[#fabc41]">
                 40%
               </span>{' '}
               with Enterprise Intelligent Automation.
             </h1>
 
-            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-xl font-normal">
+            <p className="text-base sm:text-lg text-[#B8A77E] max-w-3xl leading-relaxed font-normal">
               Arfentra Private Limited engineers deterministic multi-agent orchestration architectures, heavy industrial digital twins, and bespoke mission-critical automated pipelines for sovereign enterprises.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+            {/* Primary CTA Cluster */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
+                type="button"
                 onClick={() => onOpenConsultation()}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-500 via-emerald-400 to-teal-300 text-zinc-950 font-bold text-sm tracking-wide uppercase shadow-xl shadow-sky-500/20 hover:shadow-sky-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-[#8c1d40] text-[#FAF7EF] font-bold text-sm sm:text-base shadow-[0_8px_24px_-4px_rgba(140,29,64,0.65)] hover:bg-[#A8244D] hover:shadow-[0_12px_28px_-4px_rgba(168,36,77,0.7)] transition-all duration-200 active:scale-95 group cursor-pointer"
               >
-                <Calendar className="w-4 h-4 text-zinc-950" />
+                <PhoneCall className="w-5 h-5 text-[#FAF7EF] group-hover:rotate-12 transition-transform" />
                 <span>Schedule Strategy Call</span>
               </button>
 
               <a
                 href="#solutions"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 text-sm font-semibold tracking-wide transition-all"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#35262a] text-[#FAF7EF] font-bold text-sm sm:text-base hover:bg-[#45353a] transition-all duration-200 shadow-md border border-white/5"
               >
-                <span>Explore Solutions</span>
-                <ArrowRight className="w-4 h-4 text-zinc-400" />
+                <Network className="w-5 h-5 text-[#fabc41]" />
+                <span>Explore Enterprise Solutions</span>
               </a>
 
               <a
                 href="tel:+919384040460"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors pl-2"
+                className="font-mono text-[#ddbfc3] text-xs hover:text-[#FAF7EF] transition-colors pl-1"
               >
-                <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Direct line: <strong className="text-zinc-200">+91 9384040460</strong></span>
+                Direct line: <strong className="text-[#FAF7EF]">+91 9384040460</strong>
               </a>
-            </div>
-
-            {/* Quick Metrics Matrix Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-zinc-800/80">
-              <div className="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-                <div className="font-extrabold text-xl text-white">40%</div>
-                <div className="text-[11px] font-mono text-zinc-400 uppercase mt-0.5">Workload Cut</div>
-              </div>
-              <div className="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-                <div className="font-extrabold text-xl text-emerald-400">₹15,000</div>
-                <div className="text-[11px] font-mono text-zinc-400 uppercase mt-0.5">Entry Prototype</div>
-              </div>
-              <div className="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-                <div className="font-extrabold text-xl text-champagne-gold">7–14d</div>
-                <div className="text-[11px] font-mono text-zinc-400 uppercase mt-0.5">SLA Turnaround</div>
-              </div>
-              <div className="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-                <div className="font-extrabold text-xl text-zinc-300">99.98%</div>
-                <div className="text-[11px] font-mono text-zinc-400 uppercase mt-0.5">Exact SLA Uptime</div>
-              </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive 3D Agent Network Canvas */}
+          {/* Right Column: Hero Side Quick Stats Card (4 cols) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-6 relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-4"
           >
-            <div className="relative rounded-3xl border border-white/[0.08] bg-zinc-900/30 p-2.5 backdrop-blur-2xl shadow-2xl shadow-black/80 overflow-hidden">
-              <div className="relative h-[380px] sm:h-[460px] w-full rounded-2xl overflow-hidden bg-zinc-950/80 border border-zinc-800/60">
-                {/* 3D Canvas */}
-                <ThreeCanvas />
-
-                {/* Overlaid Telemetry Pills */}
-                <div className="pointer-events-none absolute top-4 left-4 flex flex-col gap-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-950/90 border border-emerald-500/40 text-zinc-200 text-xs font-mono backdrop-blur-md">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    <span>CORE: ARFENTRA NEURAL ENGINE v4.2</span>
-                  </div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-950/90 border border-zinc-800 text-zinc-400 text-xs font-mono backdrop-blur-md">
-                    <Cpu className="w-3.5 h-3.5 text-sky-400" />
-                    <span>LATENCY: <strong className="text-white">42ms</strong> · 42 AGENT CHAINS</span>
-                  </div>
-                </div>
-
-                <div className="pointer-events-none absolute top-4 right-4">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-champagne-gold/10 border border-champagne-gold/30 text-champagne-gold font-mono text-xs backdrop-blur-md">
-                    <Sparkles className="w-3 h-3" />
-                    Zero-Leak Sovereignty
-                  </span>
-                </div>
-
-                {/* Bottom Telemetry HUD */}
-                <div className="pointer-events-none absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-zinc-950/90 border border-zinc-800 backdrop-blur-lg flex flex-col gap-2">
-                  <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-zinc-400 uppercase tracking-wider">Operational Yield</span>
-                    <span className="text-emerald-400 font-bold">94.8% OPTIMAL</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-zinc-800 overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-teal-300 w-[94.8%]" />
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400">
-                    <span>Reclaimed: <strong className="text-white">-40% Manual Labor</strong></span>
-                    <span>Precision: <strong className="text-emerald-400">99.98%</strong></span>
-                  </div>
-                </div>
-
+            <SpotlightCard className="flex flex-col gap-3.5 bg-[#241218]/90 border-[#3D1F2A] p-6 rounded-2xl shadow-[0_12px_32px_-8px_rgba(0,0,0,0.6)] backdrop-blur-md">
+              <div className="flex items-center justify-between pb-1 border-b border-white/5">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#B8A77E] font-semibold">
+                  SYSTEM TELEMETRY STATUS
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#0E0608] text-[#fabc41] text-[10px] font-mono border border-[#fabc41]/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#fabc41] animate-pulse" />
+                  <span>LIVE NODE</span>
+                </span>
               </div>
-            </div>
+
+              <div className="space-y-2.5 pt-1">
+                <div className="flex items-center justify-between text-xs py-2 bg-[#25181c]/80 px-3.5 rounded-xl border border-white/[0.04]">
+                  <span className="text-[#ddbfc3] font-sans">Operational Workload Compression</span>
+                  <span className="font-mono text-[#ffb2bf] font-bold text-sm">~40% Cut</span>
+                </div>
+
+                <div className="flex items-center justify-between text-xs py-2 bg-[#25181c]/80 px-3.5 rounded-xl border border-white/[0.04]">
+                  <span className="text-[#ddbfc3] font-sans">Entry Prototype SLA</span>
+                  <span className="font-mono text-[#FAF7EF] font-bold text-sm">7–14 Days</span>
+                </div>
+
+                <div className="flex items-center justify-between text-xs py-2 bg-[#25181c]/80 px-3.5 rounded-xl border border-white/[0.04]">
+                  <span className="text-[#ddbfc3] font-sans">Deterministic SLA Reliability</span>
+                  <span className="font-mono text-[#fabc41] font-bold text-sm">99.98% Exact</span>
+                </div>
+
+                <div className="flex items-center justify-between text-xs py-2 bg-[#25181c]/80 px-3.5 rounded-xl border border-white/[0.04]">
+                  <span className="text-[#ddbfc3] font-sans">Sovereign Data Storage</span>
+                  <span className="font-mono text-[#FAF7EF] font-bold text-sm">Zero 3rd-Party Leaks</span>
+                </div>
+              </div>
+            </SpotlightCard>
           </motion.div>
 
         </div>
+
+        {/* Quick KPI Matrix Strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          <SpotlightCard className="p-5 rounded-2xl bg-[#241218]/70 border-[#3D1F2A] shadow-md flex flex-col justify-between">
+            <div>
+              <div className="font-mono text-[#B8A77E] text-[11px] uppercase tracking-wider font-semibold">
+                Workload Cut
+              </div>
+              <div className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#ffb2bf] tracking-tight">
+                40%
+              </div>
+            </div>
+            <p className="mt-2 text-xs text-[#ddbfc3] font-sans leading-relaxed">
+              Validated enterprise process compression.
+            </p>
+          </SpotlightCard>
+
+          <SpotlightCard className="p-5 rounded-2xl bg-[#241218]/70 border-[#3D1F2A] shadow-md flex flex-col justify-between">
+            <div>
+              <div className="font-mono text-[#B8A77E] text-[11px] uppercase tracking-wider font-semibold">
+                Entry Prototype
+              </div>
+              <div className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#FAF7EF] tracking-tight">
+                ₹15,000
+              </div>
+            </div>
+            <p className="mt-2 text-xs text-[#ddbfc3] font-sans leading-relaxed">
+              Rapid functional proof without risk.
+            </p>
+          </SpotlightCard>
+
+          <SpotlightCard className="p-5 rounded-2xl bg-[#241218]/70 border-[#3D1F2A] shadow-md flex flex-col justify-between">
+            <div>
+              <div className="font-mono text-[#B8A77E] text-[11px] uppercase tracking-wider font-semibold">
+                SLA Deployment
+              </div>
+              <div className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#fabc41] tracking-tight">
+                7–14d
+              </div>
+            </div>
+            <p className="mt-2 text-xs text-[#ddbfc3] font-sans leading-relaxed">
+              From scoping to deterministic production.
+            </p>
+          </SpotlightCard>
+
+          <SpotlightCard className="p-5 rounded-2xl bg-[#241218]/70 border-[#3D1F2A] shadow-md flex flex-col justify-between">
+            <div>
+              <div className="font-mono text-[#B8A77E] text-[11px] uppercase tracking-wider font-semibold">
+                Deterministic SLA
+              </div>
+              <div className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#f1e1ba] tracking-tight">
+                99.98%
+              </div>
+            </div>
+            <p className="mt-2 text-xs text-[#ddbfc3] font-sans leading-relaxed">
+              Rigorous validation across agentic loops.
+            </p>
+          </SpotlightCard>
+        </motion.div>
+
       </div>
     </section>
   );
