@@ -69,11 +69,11 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenConsultation }) => {
   ];
 
   return (
-    <section id="pricing" className="py-20 lg:py-28 relative bg-[#0E0608] border-t border-[#3D1F2A]/60">
+    <section id="pricing" className="py-14 sm:py-20 lg:py-24 relative bg-[#0E0608] border-t border-[#3D1F2A]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#B8A77E] tracking-widest uppercase">
             <span>[ COMMERCIAL TRANSPARENCY ]</span>
           </div>
@@ -154,9 +154,11 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenConsultation }) => {
                 </div>
 
                 {/* CTA Button */}
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
+                  type="button"
                   onClick={() => onOpenConsultation(`${tier.name} (${tier.price})`)}
-                  className={`w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg ${
+                  className={`w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg min-h-[44px] ${
                     tier.popular
                       ? 'bg-[#8c1d40] hover:bg-[#A8244D] text-[#FAF7EF] shadow-[0_4px_20px_rgba(140,29,64,0.5)]'
                       : 'bg-[#35262a] hover:bg-[#45353a] text-[#FAF7EF] border border-white/5'
@@ -164,7 +166,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenConsultation }) => {
                 >
                   <span>{tier.ctaText}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                </motion.button>
               </SpotlightCard>
             </motion.div>
           ))}

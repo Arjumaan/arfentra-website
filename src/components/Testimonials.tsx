@@ -39,11 +39,11 @@ export const Testimonials: React.FC = () => {
   ];
 
   return (
-    <section id="results" className="py-20 lg:py-28 relative bg-[#170b0f] border-t border-[#3D1F2A]/60">
+    <section id="results" className="py-14 sm:py-20 lg:py-24 relative bg-[#170b0f] border-t border-[#3D1F2A]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#ffb2bf] tracking-widest uppercase">
               <span>[ VERIFIED PRODUCTION AUDITS ]</span>

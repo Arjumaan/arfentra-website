@@ -9,8 +9,8 @@ interface CapabilitiesShowcaseProps {
 
 export const CapabilitiesShowcase: React.FC<CapabilitiesShowcaseProps> = ({ onOpenConsultation }) => {
   return (
-    <section id="capabilities" className="py-20 lg:py-28 relative bg-[#0E0608] border-t border-[#3D1F2A]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-24">
+    <section id="capabilities" className="py-14 sm:py-20 lg:py-24 relative bg-[#0E0608] border-t border-[#3D1F2A]/60 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-16 sm:space-y-20">
         
         {/* Capability 01: Autonomous Agentic Orchestrator */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -83,9 +83,11 @@ export const CapabilitiesShowcase: React.FC<CapabilitiesShowcaseProps> = ({ onOp
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#3D1F2A] bg-[#241218] p-2 group">
               <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden">
                 <img
-                  src="./assets/command_center_hq.png"
+                  src="./assets/command_center.png"
                   alt="Arfentra 3D Neural Operations Command Dome"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0E0608]/90 via-transparent to-transparent" />
               </div>
@@ -118,6 +120,8 @@ export const CapabilitiesShowcase: React.FC<CapabilitiesShowcaseProps> = ({ onOp
                   src="./assets/command_center.png"
                   alt="Arfentra Heavy Industry Digital Twin"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0E0608]/90 via-transparent to-transparent" />
               </div>

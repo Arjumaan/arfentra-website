@@ -5,11 +5,11 @@ import { Network, Layers, Zap, Shield, Check } from 'lucide-react';
 
 export const BentoFeatures: React.FC = () => {
   return (
-    <section id="solutions" className="py-20 lg:py-28 relative bg-[#0E0608]">
+    <section id="solutions" className="py-14 sm:py-20 lg:py-24 relative bg-[#0E0608] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-4">
+        <div className="max-w-3xl mb-10 sm:mb-12 space-y-3 sm:space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-[11px] text-[#ffb2bf] tracking-widest uppercase">
             <Zap className="w-3.5 h-3.5 text-[#fabc41]" />
             <span>[ THE ARFENTRA DIFFERENCE ]</span>

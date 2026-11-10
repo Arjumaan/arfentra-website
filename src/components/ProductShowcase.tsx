@@ -90,7 +90,7 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({ onOpenConsulta
   const current = products[activeTab];
 
   return (
-    <section id="products" className="py-20 lg:py-28 relative bg-[#0E0608] border-t border-[#3D1F2A]/60">
+    <section id="products" className="py-14 sm:py-20 lg:py-24 relative bg-[#0E0608] border-t border-[#3D1F2A]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Header */}

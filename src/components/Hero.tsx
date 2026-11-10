@@ -9,7 +9,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0E0608] pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-36 lg:pb-28">
+    <section className="relative w-full overflow-hidden bg-[#0E0608] pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-32 lg:pb-20">
       {/* Atmospheric Ambient Lighting Rings */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-[#540815]/35 via-[#8c1d40]/20 to-transparent blur-3xl opacity-75" />
       <div className="pointer-events-none absolute top-1/3 -right-24 w-[480px] h-[480px] bg-[#720E1E]/15 blur-[120px] rounded-full" />
@@ -68,29 +68,31 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation }) => {
             </p>
 
             {/* Primary CTA Cluster */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <button
+            <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+              <motion.button
+                whileTap={{ scale: 0.96 }}
                 type="button"
                 onClick={() => onOpenConsultation()}
-                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-[#8c1d40] text-[#FAF7EF] font-bold text-sm sm:text-base shadow-[0_8px_24px_-4px_rgba(140,29,64,0.65)] hover:bg-[#A8244D] hover:shadow-[0_12px_28px_-4px_rgba(168,36,77,0.7)] transition-all duration-200 active:scale-95 group cursor-pointer"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-7 py-3.5 rounded-xl bg-[#8c1d40] text-[#FAF7EF] font-bold text-sm sm:text-base shadow-[0_8px_24px_-4px_rgba(140,29,64,0.65)] hover:bg-[#A8244D] hover:shadow-[0_12px_28px_-4px_rgba(168,36,77,0.7)] transition-all duration-200 active:scale-95 group cursor-pointer min-h-[44px]"
               >
                 <PhoneCall className="w-5 h-5 text-[#FAF7EF] group-hover:rotate-12 transition-transform" />
                 <span>Schedule Strategy Call</span>
-              </button>
+              </motion.button>
 
-              <a
+              <motion.a
+                whileTap={{ scale: 0.96 }}
                 href="#solutions"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#35262a] text-[#FAF7EF] font-bold text-sm sm:text-base hover:bg-[#45353a] transition-all duration-200 shadow-md border border-white/5"
+                className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3.5 rounded-xl bg-[#35262a] text-[#FAF7EF] font-bold text-sm sm:text-base hover:bg-[#45353a] transition-all duration-200 shadow-md border border-white/5 min-h-[44px]"
               >
                 <Network className="w-5 h-5 text-[#fabc41]" />
                 <span>Explore Enterprise Solutions</span>
-              </a>
+              </motion.a>
 
               <a
                 href="tel:+919384040460"
-                className="font-mono text-[#ddbfc3] text-xs hover:text-[#FAF7EF] transition-colors pl-1"
+                className="font-mono text-[#ddbfc3] text-xs hover:text-[#FAF7EF] transition-colors pl-1 min-h-[44px] flex items-center"
               >
-                Direct line: <strong className="text-[#FAF7EF]">+91 9384040460</strong>
+                Direct line: <strong className="text-[#FAF7EF] ml-1">+91 9384040460</strong>
               </a>
             </div>
           </motion.div>

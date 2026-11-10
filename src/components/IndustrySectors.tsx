@@ -47,7 +47,7 @@ export const IndustrySectors: React.FC = () => {
   ];
 
   return (
-    <section id="industries" className="py-20 lg:py-28 relative bg-[#170b0f] border-y border-[#3D1F2A]/60">
+    <section id="industries" className="py-14 sm:py-20 lg:py-24 relative bg-[#170b0f] border-y border-[#3D1F2A]/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         
         {/* Header */}
@@ -82,10 +82,12 @@ export const IndustrySectors: React.FC = () => {
                   <div className="w-16 h-16 mb-6 rounded-xl bg-[#170b0f] border border-[#3D1F2A] p-2 shadow-inner overflow-hidden group-hover:border-[#fabc41]/50 transition-colors">
                     <div className="w-full h-full rounded-lg overflow-hidden relative">
                       <img
-                        src="./assets/sector_badges_hq.png"
+                        src="./assets/sector_badges.png"
                         alt={s.title}
                         className="w-[200%] h-[200%] max-w-none object-cover relative group-hover:scale-110 transition-transform duration-500"
                         style={{ objectPosition: s.spritePos }}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>
